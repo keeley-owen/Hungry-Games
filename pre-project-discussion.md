@@ -21,7 +21,13 @@ Expectation setting and agreements (what do we each want out of this time, what 
 ## How will you make sure everyone feels included?/How will you decide who needs to be present for which conversations?
  - Making sure everyone has a task to work on
  - Involving everyone in group discussion ( Talking pillow )
-
+## Stress Table 
+Person | What it looks like when they're stressed | What helps | What we can do to combat this as a team 
+Keeley |
+Ton |
+LJ |
+Andrew |
+Blue |
 
 ## How will we work (what roles and what agile rituals will we use etc)
 ### LJ - Product Owner
