@@ -1,7 +1,7 @@
 
 # Pre-project discussion
 Expectation setting and agreements (what do we each want out of this time, what hours will we keep, what do we do when conflict arises, how will we communicate, especially what hours work will happen over the weekend)
-- When stressed or otherwise needed we each agreed we'd need time to go outside for a smoke/vape and calm down for a couple of minutes. Timing for breaks will be up to the individual, we can all agree we won't waste too much time outside
+- When stressed or otherwise needed we each agreed we'd need time to go outside to take 5 and calm down for a couple of minutes. Timing for breaks will be up to the individual, we can all agree we won't waste too much time outside
 
 ## How will you make decisions together? How will you handle conflict?
 - with a group of five we can effectively place group votes
