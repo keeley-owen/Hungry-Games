@@ -1,7 +1,7 @@
 
 # Pre-project discussion
 Expectation setting and agreements (what do we each want out of this time, what hours will we keep, what do we do when conflict arises, how will we communicate, especially what hours work will happen over the weekend).
-- We will each work approximately one day over the weekend, to make sure we both have enough time for rest and can continue to work on the project. 
+- We will each work approximately one day over the weekend, to make sure we have enough time for rest and can continue to work on the project. 
 - When stressed or otherwise needed we each agreed we'd need time to go outside to take 5 and calm down for a couple of minutes. Timing for breaks will be up to the individual, we can all agree we won't waste too much time outside.
 
 ## How will you make decisions together? How will you handle conflict?
@@ -22,6 +22,7 @@ Expectation setting and agreements (what do we each want out of this time, what 
 ## How will you make sure everyone feels included?/How will you decide who needs to be present for which conversations?
  - Making sure everyone has a task to work on, so each person can utilise their time effectively. 
  - Involving everyone in group discussion ( Talking pillow ).
+ - We will have teamwide standups, and will let people go if the topic doesn't invlove them and is likely to be a broader conversation. Will have impromtu standups when required to get everyone on the same page. 
 
 ## Stress Table 
 Person | What it looks like when they're stressed | What helps | What we can do to combat this as a team |
