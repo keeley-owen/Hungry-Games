@@ -59,3 +59,17 @@ Person | What it looks like when they're stressed | What helps | What we can do 
 ### Fun Times tm
 - Coffee trips ytg.
 - Quick & easy games - hangman, cards, NURTZ, JENGA.
+
+
+## User Stories
+
+### MVP
+-As a user, I want to be able to input my location and get results in a relevant radius
+-As a user, I want to see a list of "fighters" (restaurants) that apply to my location and their "stats"
+-As a user, I want an entertaining battle to follow which I can watch
+-As a user, I want the final restaurant to be displayed on its own "win" page with details about it underneath
+
+### STRETCH
+-As a user, I want to choose between Location Mode and List Mode
+-As a user, I want List Mode to allow me to input my own choices of restaurant fro scratch
+-As a user, I want the battle to include animated "attacks"
