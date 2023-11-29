@@ -9,27 +9,23 @@ Expectation setting and agreements (what do we each want out of this time, what 
 
 ## How will you, individually and as a team, get the help you need both technically and non-technically?
 
-### Individually:
+### Tech:
 - Facilitators
+- Asking Team mates for help
 
-### Team:
+### Non Tech:
 - Group discussion
-- Involve facilitators( if needed ) 
-- Facilitators
+- Involve facilitators( if needed )
+- Human skills discord/ in person
 
 ## How will you make sure everyone feels included?/How will you decide who needs to be present for which conversations?
  - Making sure everyone has a task to work on
  - Involving everyone in group discussion ( Talking pillow )
 
 
-## How will you survive (Will you eat together? How will you break the tension? What is your fun times plan?)
-- Lunch period between 12 and 2, try not to go for the full 2 hours - closer 30 min means we can have smaller breaks dotted throughout the day
-- Breaks 
-
-
 ## How will we work (what roles and what agile rituals will we use etc)
 ### LJ - Product Owner
-### Keeley - Scrum Master
+### Keeley - Scrum 
 ### Blue - Git Keeper
 ### Ton 
 ### Andrew 
@@ -37,5 +33,15 @@ Expectation setting and agreements (what do we each want out of this time, what 
 ### Agile rituals
 - Following kanban tickets
 - Pairing; switching pairs depending on tickets for efficiency
-- 
-                       
+
+
+## How will you survive (Will you eat together? How will you break the tension? What is your fun times plan?)
+### Lunches
+-Aiming to have a ~half hour lunch break at some point between 12 and 2 at each persons own discretion.
+-Lots of little breaks throughout the day
+### Tension
+-Take 5 separately (whole group) to cool off
+-Courageous conversations where required 
+### Fun Times tm
+- Coffee trips ytg
+- Quick & easy games - hangman, cards, NURTZ, JENGA
