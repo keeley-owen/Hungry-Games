@@ -64,6 +64,15 @@ Make sure that:
 - user-facing updates (front end/ css crew) should be checked for accessibility concerns (using the WAVE tool)
 - Good naming distinction between similar elements
 
+## Data sources
+ 
+For our project we will be consuming the Google Maps API, we will be using three different API's in this; 'Find Place', 'Place Details', and 'Nearby Search'. 
+
+Google Maps API: 
+- Find Place: This will be used to get the lattitude & longuitude of a location as an object, which will be used to search for the address.
+- Nearby Search: This will be used to get the radius and locations in the zone from the Find Place API.
+- Place Details: This will be used to display the details of a location, it is an object that contains all of the information we need. 
+
 ## Naming conventions
 
 Be descriptive in each function/component name, reference the particular layer of the stack.
@@ -72,6 +81,7 @@ Note, more specific naming conventions to come.
 Function names: 
 - getAllLocationsApi()
 - getLocationsDetailsApi()
+- getCurrentLocationApi()
 - getWinner()
 - STRETCH
 - getChosenLocationsDb()
@@ -106,8 +116,8 @@ Component names
 | Method | Endpoint | Protected | Usage | Response |
 | --- | --- | --- | --- | --- |
 | Get | /api/v1/locations | No | Get all locations | Array of Locations Objects |
-| Get | /api/v1/locationsdata | No | Get locations details for display | Single Location Data |
-| Get | /api/v1/locations/:winner | No | Get one winner with information | Single Location Data |
+| Get | /api/v1/locations/:id | No | Get locations details for display | Single Location Data |
+| Get | /api/v1/locations/winner/:id | No | Get one winner with information | Single Location Data |
 | Post* | /api/v1/locations/stats | Yes | Add locations with stats to database | 201 status code |
 
 Endpoints with a * are stretch
@@ -175,6 +185,33 @@ Returns:
 ```
 ### API functions - not set up yet
 
+- getCurrentLocationApi()
+  Returns:
+```json
+{
+  "candidates":
+    [
+      {
+        "formatted_address": "140 George St, The Rocks NSW 2000, Australia",
+        "geometry":
+          {
+            "location": { "lat": -33.8599358, "lng": 151.2090295 },
+            "viewport":
+              {
+                "northeast":
+                  { "lat": -33.85824377010728, "lng": 151.2104386798927 },
+                "southwest":
+                  { "lat": -33.86094342989272, "lng": 151.2077390201073 },
+              },
+          },
+        "name": "Museum of Contemporary Art Australia",
+        "opening_hours": { "open_now": false },
+        "rating": 4.4,
+      },
+    ],
+  "status": "OK",
+}
+```
 - getAllLocationsApi()
   Returns:
 ```json
