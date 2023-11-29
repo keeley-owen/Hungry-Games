@@ -70,43 +70,45 @@ Be descriptive in each function/component name, reference the particular layer o
 Note, more specific naming conventions to come.
 
 Function names: 
-- getAllBridgesDb()
-- getFavBridgesDb()
-- addFavBridgeDb()
-- getAllBridgesApi()
-- getBridgeApi()
-- useBridgeMutation()
+- getAllLocationsApi()
+- getLocationsDetailsApi()
+- getWinner()
+- STRETCH
+- getChosenLocationsDb()
+- getChosenLocationsApi()
+- getAllLocationsDb()
+
+// -- More to come --
 
 Component names
-- BridgesList.tsx
-- FavouriteBridges.tsx
-- SingleBridge.tsx
-- Home.tsx
 - App.tsx
+- Home.tsx
+- Locations.tsx
+- Winner.tsx
+- STRETCH
+- Arena.tsx
+- Landing.tsx
+- CustomRound.tsx
 
 
 ### Views (Client Side)
 
 | name | MVP | purpose |
 | --- | --- | --- |
-| Home | Yes | Welcomes troll toll operators and links to the app (to all bridges) and sign in for stretch|
-| Bridges | Yes | Display a list of bridges with toll collection data |
-| Bridge | Yes | Display a single bridge using it's id with it's data |
-| Login | No | View for the toll operator to enter their login credentials |
-| Register | No | View for the toll operator to sign up |
-| My Bridges | No | Display a list of favourite bridges saved by the user and active bridge|
-| Analytics | No | Provide tools to analyze toll collection trends |
+| Home | Yes | Welcomes users to site and has a form where you can input location, there is a 'GO!' button that links to the winner page, has a list of relevant locations|
+| Winner | Yes | Displays the randomly selected location with information about it |
+| Arena | No | Display an arena fghting zone where Locations battle, winner is then determined linking back to winner page |
+| Landing | No | View for the user to choose between different modes (location or custom) |
+| Custom | No | View for the user to input their own locations |
 
 ### API (Client - Server)
 
 | Method | Endpoint | Protected | Usage | Response |
 | --- | --- | --- | --- | --- |
-| Get | /api/v1/bridges | No | Get all bridges with toll collection data | Array of Bridge Objects |
-| Get | /api/v1/bridges/:id | No | Get one bridge with sats and toll collection data | Single Bridge Data |
-| Post* | /api/v1/auth/login | Yes | Log In a Toll Operator | The Toll Operator's JWT Token |
-| Post*| /api/v1/auth/register | Yes | Register a Toll Operator | The Toll Operator's JWT Token |
-| Get* | /api/v1/bridges/fav | Yes | Get the list of favourite bridges a user has saved | Array of ints (int = an id) |
-| Post* | /api/v1/bridges/fav | Yes | Add a saved favourite bridge to the db | 201 status code |
+| Get | /api/v1/locations | No | Get all locations | Array of Locations Objects |
+| Get | /api/v1/locationsdata | No | Get locations details for display | Single Location Data |
+| Get | /api/v1/locations/:winner | No | Get one winner with information | Single Location Data |
+| Post* | /api/v1/locations/stats | Yes | Add locations with stats to database | 201 status code |
 
 Endpoints with a * are stretch
 
@@ -114,51 +116,27 @@ Endpoints with a * are stretch
 
 Here is a start on your database you can update these in your documentation. The bridge seed data has already been done for you. 
 
-### Bridges - already set up
+
+### locations/stats  - not set up
 
 | Column Name | Data Type | Purpose |
 | --- | --- | --- |
-| id | integer | Unique identifier for each bridge |
-| name | string | Name of the bridge |
-| location | string | Location of the bridge |
-| type | string | Type of the bridge (e.g., Motorway bridge, Road bridge) |
-| year_built | integer | Year the bridge was built |
-| length_meters | string | Length of the bridge in meters |
-| lanes | integer | Number of lanes on the bridge |
-| added_by_user | integer | Troll toll operator userID who added the bridge data (auth0_id) |
-| busyness | integer | density of bridge traffic determining estimated toll collected |
-
-### Users/ Trolls - not set up
-
-| Column Name | Data Type | Purpose |
-| --- | --- | --- |
-| id | integer | Unique identifier for each user |
-| email| string | used to log in to account |
-| first_name | string| trolls first name |
-| last_name |string | troll's last name |
-| auth0_id | string | Unique identifier used for auth supplied by auth0 when set up |
+| id | integer | Unique identifier for each location |
+| location_name| string | name of location taken from google maps|
+| location_health | int | health points of location based on google ratings |
+| location_damage | int | Randomy calculated damage points of location |
 
 
-### Favourite Bridges (Many to Many / join table) - not set up
-
-| Column Name | Data Type | Purpose |
-| --- | --- | --- |
-| id | integer | Unique identifier |
-| user_id | integer | Which user saved the bridge |
-| bridge_id | integer | Which bridge was saved |
-
-### Toll Collected - not set up yet
-
-| Column Name | Data Type | Purpose |
-| --- | --- | --- |
-| id | integer | Unique identifier for each toll analytics entry |
-| bridge_id | integer | Bridge ID associated with the toll data |
-| timestamp | date/time | Date and time of the toll collection |
-| revenue | decimal | Amount of revenue collected during the toll |
-
-Database on toll analytics are up to you! 
 
 ## Database functions:
+
+
+- getLocationsDataApi()
+- getWinner()
+- STRETCH
+- getAllLocationsDb()
+- getChosenLocationsDb()
+- getChosenLocationsApi()
 
 getAllBridgesDb()
 
@@ -195,66 +173,92 @@ Returns:
   // ...
 ]
 ```
+### API functions - not set up yet
 
-
-## Authentication
-
-To make a request to the server that checks the authentication of the user, use the custom hook ```useAuthorisedRequest(method, endpoint, body)``` which returns ```<Promise<() => Promise<request.response>>>```
-
-| Parameter | Data Type | Purpose |
-| --- | --- | --- |
-| method | string | the type of the request. ```get``` ```post``` ```patch``` or ```delete``` |
-| endpoint | string | the endpoint of the request |
-| body | string or undefined | the body of the request |
-
-An explample on how to create an authorized request:
-
+- getAllLocationsApi()
+  Returns:
+```json
+{
+  "html_attributions": [],
+  "results":
+    [
+      {
+        "business_status": "OPERATIONAL",
+        "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/bar-71.png",
+        "icon_background_color": "#FF9E67",
+        "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/bar_pinlet",
+        "name": "Cruise Bar",
+        "opening_hours": { "open_now": false },
+        "place_id": "ChIJi6C1MxquEmsR9-c-3O48ykI",
+        "price_level": 2,
+        "rating": 4,
+        "reference": "ChIJi6C1MxquEmsR9-c-3O48ykI",
+        "scope": "GOOGLE",
+        "types":
+          ["bar", "restaurant", "food", "point_of_interest", "establishment"],
+      }
+    ]
+    }
 ```
-//React Component function
-export function CreateGetRequest() {
 
-  // Use the hook at the top level of your component
-  const makeRequest = useAuthorisedRequest('get', '/api/v1/auth', undefined)
-
-  async function OnGetRequest() {
-
-    // Make the request  
-    const response = await (await makeRequest)()
-    // Output the response to console
-    console.log(response)
-  }
-
-  return (
-    // Only send an authorised request if the user is authenticated
-    <IfAuthenticated>
-      <button onClick={OnGetRequest}>Create Get get request</button>
-    </IfAuthenticated>
-  )
+- getLocationsDataApi)
+  Returns:
+```json
+{
+  "html_attributions": [],
+  "result":
+    {
+      "adr_address": '<span class="street-address">48 Pirrama Rd</span>, <span class="locality">Pyrmont</span> <span class="region">NSW</span> <span class="postal-code">2009</span>, <span class="country-name">Australia</span>',
+      "business_status": "OPERATIONAL",
+      "formatted_address": "48 Pirrama Rd, Pyrmont NSW 2009, Australia",
+      "formatted_phone_number": "(02) 9374 4000",
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/generic_business-71.png",
+      "icon_background_color": "#7B9EB0",
+      "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/generic_pinlet",
+      "international_phone_number": "+61 2 9374 4000",
+      "name": "Google Workplace 6",
+      "opening_hours":
+        {
+          "open_now": false,
+          "weekday_text":
+            [
+              "Monday: 9:00 AM – 5:00 PM",
+              "Tuesday: 9:00 AM – 5:00 PM",
+              "Wednesday: 9:00 AM – 5:00 PM",
+              "Thursday: 9:00 AM – 5:00 PM",
+              "Friday: 9:00 AM – 5:00 PM",
+              "Saturday: Closed",
+              "Sunday: Closed",
+            ],
+        },
+      
+      "place_id": "ChIJN1t_tDeuEmsRUsoyG83frY4",
+      "plus_code":
+        {
+          "compound_code": "45MW+C8 Pyrmont NSW, Australia",
+          "global_code": "4RRH45MW+C8",
+        },
+      "rating": 4,
+      "reference": "ChIJN1t_tDeuEmsRUsoyG83frY4",
+      "url": "https://maps.google.com/?cid=10281119596374313554",
+      "vicinity": "48 Pirrama Road, Pyrmont",
+      "website": "http://google.com/",
+    },
+  "status": "OK",
 }
 ```
-There are two example react components ```SignIn``` and ```SignOut``` that show how to sign the user in, out, and how to make an authenticated request. They should be placed as siblings in there parents component.
 
-```
-<SignIn/>
-<SignOut/>
-```
 
 ### Helper Components
 
-There are two helper components that will render there children conditionally
+The helper component chooses the winner, which is a component that will render the winner conditionally
 
 ```
-// Will only render the <p> tag if the user is currently enticated
-<Ifenticated>
-      <p>Currently Signed in</p>
-</Ifenticated>
+// Will only render the <Winner> component based on the winner of the random selection
+<Winner>
+      <p>And the winner is...</p>
+</Winner>
 ```
-```
-// Will only render the <p> tag if the user is currently signed-out
-<IfNotenticated>
-      <p>Currently Signed out! Click here to sign in</p>
-</IfNotenticated>```
----
 
 ## Setup
 
