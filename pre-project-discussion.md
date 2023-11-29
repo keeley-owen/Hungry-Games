@@ -29,7 +29,7 @@ Person | What it looks like when they're stressed | What helps | What we can do 
 
 
 
-| Order | What it looks like  | What helps                                  | What we can do as a team | Feedbacker 2 |
+| Order | Name | What it looks like  | What helps                                  | What we can do as a team |
 | ----- | -------- | -------------------------------------- | ------------ | ------------ |
 | 1     | Keeley   | CI no longer interact with the group and tend to shut down  | Helps me to have some time out to recompose         | checking in when I may  be communicating less to see if there's anything I'm worried about     |
 | 2     | Ton      | If im not able to absorb any information/ my brain doesnt wor | take a short break          | Not to talk about the project just talk about something else           |
