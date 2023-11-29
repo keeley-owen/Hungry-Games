@@ -32,7 +32,7 @@ Ton | If im not able to absorb any information/ my brain doesnt work | take a sh
 LJ | Tend to become quite curt and short in conversation, less talkative more isolation | take time to myself and have a distraction for a bit | make an effort to talk one on one and check in, ideally earlier is better | 
 Andrew | I generally just go quiet and shut down for a couple minutes | Taking a couple minutes outside to myself with music or something else to distract me | To help me the best someone can do really is just give me a little company in a quiet spot. Even if we're not talking it helps to have someone there.
 
-Blue |
+Blue | When I'm stressed, I get impatient with people, and sometimes get grumpy. | Often taking sometime to myself to relize I'm stressed, and distract myself from the situation, before getting back involved. | Leave me alone! And also let me have a bit of extra time doing something else. |
 
 ## How will we work (what roles and what agile rituals will we use etc)
 ### LJ - Product Owner
