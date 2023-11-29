@@ -66,10 +66,13 @@ Person | What it looks like when they're stressed | What helps | What we can do 
 ### MVP
 - As a user, I want to be able to input my location and get results in a relevant radius
 - As a user, I want to see a list of "fighters" (restaurants) that apply to my location and their "stats"
-- As a user, I want an entertaining battle to follow which I can watch
-- As a user, I want the final restaurant to be displayed on its own "win" page with details about it underneath
+- As a user, I want a result to be randomly chosen for me by the app
+- As a user, I want the chosen restaurant to be displayed on its own "win" page with details about it underneath
 
 ### STRETCH
+- As a user, I want restaurants to be displayed moving around in an arena.
+- As a user, I want restaurants to collide with each other
+- As a user, I want restaurants to damage each other until one is remaining
 - As a user, I want to choose between Location Mode and List Mode
 - As a user, I want List Mode to allow me to input my own choices of restaurant fro scratch
 - As a user, I want the battle to include animated "attacks"
