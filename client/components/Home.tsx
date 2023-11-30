@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { getCurrentLocationApi } from '../apis/locationApi'
+import { getCurrentLocationApi } from '../apis/current'
 import { useQuery } from '@tanstack/react-query'
 import { Location } from '../../models/fruit'
 
@@ -32,34 +32,33 @@ export default function Home() {
     return <p>Loading...</p>
   }
 
-  const latitude = currentLocation.lat
-  const longitude = currentLocation.lng
-
-  //dispalys coordinates onscreen for testing purposes
-  function displayLocation() {
-    //checks that coordinates are being returned from api
-    if (latitude != null && longitude != null) {
-      return (
-        <>
-          <p>Current Location: </p>
-          <p>
-            {' '}
-            {latitude} {longitude}{' '}
-          </p>
-        </>
-      )
-    } else {
-      return <p>Location is sad {':('} </p>
-    }
-  }
-
   const handleSubmit = (e) => {
     e.preventDefault()
     const startCharacter = '${'
     const endCharacter = '}'
     const searchInput = formData.address.split(' ')
     const apiQuery = startCharacter + searchInput.join('}%20${') + endCharacter
-    return apiQuery
+
+    async function displayLocation() {
+      const currentLocation = await getCurrentLocationApi(apiQuery)
+      const latitude = currentLocation.lat
+      const longitude = currentLocation.lng
+      //checks that coordinates are being returned from api
+      if (latitude != null && longitude != null) {
+        return (
+          <>
+            <p>Current Location: </p>
+            <p>
+              {' '}
+              {latitude} {longitude}{' '}
+            </p>
+          </>
+        )
+      } else {
+        return <p>Location is sad {':('} </p>
+      }
+    }
+    displayLocation
   }
 
   return (
@@ -76,7 +75,6 @@ export default function Home() {
       <button className="sumbitButton" type="submit">
         SUBMIT LOCATION
       </button>
-      {/* {displayLocation()} */}
     </>
   )
 }
