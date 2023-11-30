@@ -14,7 +14,15 @@ export function LocationList(){
   //   return <p>Loading ...</p>
   
   // }
+  console.log("component",location)
+  return(
+    <>
+    <ul>
+    {location.results.map((data)=><li>{data.place_id}</li>)}
+    </ul>
+    
+    </>
+  )
   
-  console.log("component",location.body.results.map((data)=>data.place_id))
   
 }

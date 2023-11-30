@@ -7,15 +7,17 @@ const router = Router()
 const url =
   'https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=cruise&location=-33.8670522%2C151.1957362&radius=1500&type=restaurant&key=AIzaSyCLCHcoB2bknGHj_NVD0Q4bKERJ2t1GwvY'
 ///api/v1/fruits
-router.get('/', async (req, res) => {
-  // try{
+
+router.get('/:location', async (req, res) => {
+  try{
+    const coordinate = req.params.location
     console.log(url)
-  const response = await request.get(url)
+  const response = await request.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=cruise&location=-${coordinate}&radius=1500&type=restaurant&key=AIzaSyCLCHcoB2bknGHj_NVD0Q4bKERJ2t1GwvY`)
 
   res.json(response.body)
-  // }catch(e){
-  //   res.status(500).json({ message: 'Something went wrong' })
-  // }
+  }catch(e){
+    res.status(500).json({ message: 'Something went wrong' })
+  }
 
 })
 
