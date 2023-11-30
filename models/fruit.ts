@@ -16,7 +16,7 @@ export interface Result {
 export interface Geometry {
   location: Location
   locationType: string
-  viewport: Viewport
+
 }
 
 export interface Location {

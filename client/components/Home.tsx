@@ -6,15 +6,21 @@ import { Location } from '../../models/fruit'
 const initialFormData = {
   address: '',
 }
+//use 275 cuba street te aro wellington for devAcademy address
 
 export default function Home() {
   const {
     data: currentLocation,
     error,
     isLoading,
-  } = useQuery({ queryKey: [], queryFn: getCurrentLocationApi })
+  } = useQuery({
+    queryKey: [],
+    queryFn: getCurrentLocationApi,
+  })
 
   const [formData, setFormData] = useState(initialFormData)
+  const [latitude, setLatitude] = useState(null)
+  const [longitude, setLongitude] = useState(null)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -22,6 +28,7 @@ export default function Home() {
       ...formData,
       [name]: value,
     })
+    console.log('form changing')
   }
 
   if (error) {
@@ -32,33 +39,23 @@ export default function Home() {
     return <p>Loading...</p>
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     const startCharacter = '${'
     const endCharacter = '}'
     const searchInput = formData.address.split(' ')
-    const apiQuery = startCharacter + searchInput.join('}%20${') + endCharacter
-
-    async function displayLocation() {
-      const currentLocation = await getCurrentLocationApi(apiQuery)
-      const latitude = currentLocation.lat
-      const longitude = currentLocation.lng
-      //checks that coordinates are being returned from api
-      if (latitude != null && longitude != null) {
-        return (
-          <>
-            <p>Current Location: </p>
-            <p>
-              {' '}
-              {latitude} {longitude}{' '}
-            </p>
-          </>
-        )
-      } else {
-        return <p>Location is sad {':('} </p>
-      }
+    const apiQuery = startCharacter + searchInput.join('%20') + endCharacter
+    console.log('apiQuery:', apiQuery)
+    try {
+      // const currentLocation = await getCurrentLocationApi(apiQuery)
+      setLatitude(currentLocation.results[0].geometry.location.lat)
+      setLongitude(currentLocation.results[0].geometry.location.lng)
+    } catch (error) {
+      console.error('location is sad :(', error)
+      console.log(currentLocation)
+      setLatitude(null)
+      setLongitude(null)
     }
-    displayLocation
   }
 
   return (
@@ -70,11 +67,21 @@ export default function Home() {
           value={formData.address}
           onChange={handleInputChange}
         />
+        <button className="sumbitButton" type="submit">
+          SUBMIT LOCATION
+        </button>
       </form>
-
-      <button className="sumbitButton" type="submit">
-        SUBMIT LOCATION
-      </button>
+      {latitude != null && longitude != null ? (
+        <>
+          <p>Current Location:</p>
+          <p>
+            {' '}
+            {latitude} {longitude}{' '}
+          </p>
+        </>
+      ) : (
+        <p>Location is sad {':('} </p>
+      )}
     </>
   )
 }
