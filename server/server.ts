@@ -1,14 +1,12 @@
 import express from 'express'
 import * as Path from 'node:path'
 
-import fruitRoutes from './routes/routes'
 import currentRoutes from './routes/current'
 
 const server = express()
 
 server.use(express.json())
 
-// server.use('/api/v1/', fruitRoutes)
 server.use('/api/v1/current/', currentRoutes)
 
 if (process.env.NODE_ENV === 'production') {

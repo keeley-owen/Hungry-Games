@@ -1,19 +1,13 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { getCurrentLocationApi } from '../apis/current'
 import { useQuery } from '@tanstack/react-query'
-import { Location } from '../../models/fruit'
 
 const initialFormData = {
   address: '',
 }
-//use 275 cuba street te aro wellington for devAcademy address
 
 export default function Home() {
-  const {
-    data: currentLocation,
-    error,
-    isLoading,
-  } = useQuery({
+  const { error, isLoading } = useQuery({
     queryKey: [],
     queryFn: getCurrentLocationApi,
   })
@@ -28,7 +22,6 @@ export default function Home() {
       ...formData,
       [name]: value,
     })
-    console.log('form changing')
   }
 
   if (error) {
@@ -41,18 +34,14 @@ export default function Home() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const startCharacter = '${'
-    const endCharacter = '}'
     const searchInput = formData.address.split(' ')
-    const apiQuery = startCharacter + searchInput.join('%20') + endCharacter
-    console.log('apiQuery:', apiQuery)
+    const apiQuery = searchInput.join('%20')
+    const currentLocation = await getCurrentLocationApi(apiQuery)
     try {
-      // const currentLocation = await getCurrentLocationApi(apiQuery)
       setLatitude(currentLocation.results[0].geometry.location.lat)
       setLongitude(currentLocation.results[0].geometry.location.lng)
     } catch (error) {
       console.error('location is sad :(', error)
-      console.log(currentLocation)
       setLatitude(null)
       setLongitude(null)
     }
