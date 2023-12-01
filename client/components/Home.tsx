@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import { getCurrentLocationApi } from '../apis/current'
 import { useQuery } from '@tanstack/react-query'
-
+import { LocationList } from './LocationList'
 const initialFormData = {
   address: '',
 }
 
 export default function Home() {
+
+ 
   const { error, isLoading } = useQuery({
     queryKey: [],
     queryFn: getCurrentLocationApi,
@@ -15,7 +17,8 @@ export default function Home() {
   const [formData, setFormData] = useState(initialFormData)
   const [latitude, setLatitude] = useState(null)
   const [longitude, setLongitude] = useState(null)
-
+  const [place,setPlace] = useState('')
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target
     setFormData({
@@ -31,22 +34,28 @@ export default function Home() {
   if (isLoading) {
     return <p>Loading...</p>
   }
-
+  
+  const coordinates = `${latitude},${longitude}`
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setPlace(coordinates)
     const searchInput = formData.address.split(' ')
     const apiQuery = searchInput.join('%20')
     const currentLocation = await getCurrentLocationApi(apiQuery)
     try {
+      
       setLatitude(currentLocation.results[0].geometry.location.lat)
       setLongitude(currentLocation.results[0].geometry.location.lng)
+      
+    // console.log("adsf",coordinates)
     } catch (error) {
       console.error('location is sad :(', error)
       setLatitude(null)
       setLongitude(null)
+     
     }
   }
-
+  
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -60,7 +69,7 @@ export default function Home() {
           SUBMIT LOCATION
         </button>
       </form>
-      {latitude != null && longitude != null ? (
+      {/* {latitude != null && longitude != null ? (
         <>
           <p>Current Location:</p>
           <p>
@@ -70,7 +79,8 @@ export default function Home() {
         </>
       ) : (
         <p>Location is sad {':('} </p>
-      )}
+      )} */}
+      <LocationList nearbyLocation = {place}/>
     </>
   )
 }

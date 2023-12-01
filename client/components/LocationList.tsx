@@ -2,9 +2,10 @@ import { useQuery } from '@tanstack/react-query'
 import { useState } from 'react'
 import { getNearByLocations } from '../apis/maps'
 
-export function LocationList() {
-  const [coordinates, setCoordinates] = useState('')
-  const splitText = coordinates.split(',')
+export function LocationList(props) {
+  console.log("this is prop",props.nearbyLocation.split(',').join('%2C'))
+  // const [coordinates, setCoordinates] = useState('')
+  const splitText = props.nearbyLocation.split(',')
   const {
 
     data: location,
@@ -12,11 +13,12 @@ export function LocationList() {
     error,
 
   } = useQuery({
-
+    
     queryKey: ['location',splitText.join('%2C')],
     queryFn: getNearByLocations,
 
   })
+  
   if (error) {
 
     return <p>This is an Error</p>
@@ -27,23 +29,22 @@ export function LocationList() {
     return <p>Loading Locations.....</p>
 
   }
-  function handleClick(e) {
+  // function handleClick(e) {
+  //   e.preventDefault()
+  //   const inputCoordinates = e.target.elements.coordinates.value
+  //   setCoordinates(inputCoordinates)
 
-    e.preventDefault()
-    const inputCoordinates = e.target.elements.coordinates.value
-    setCoordinates(inputCoordinates)
-
-  }
+  // }
 
   return (
     <>
-    <form onSubmit={handleClick}>
+    {/* <form onSubmit={handleClick}>
 
       <label htmlFor="text">coordinates</label>
       <input type="text" name="coordinates" />
       <button>search coordinates</button>
 
-    </form>
+    </form> */}
     {/* Container for nearby locations */}
     <div className = "nearbyLocationsContainer">
 
