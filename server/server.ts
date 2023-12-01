@@ -5,8 +5,9 @@ import mapRoutes from './routes/maps'
 
 const server = express()
 
-server.use(express.json())
 
+server.use(express.urlencoded({extended:true}))
+server.use(express.json())
 server.use('/api/v1/maps', mapRoutes)
 
 if (process.env.NODE_ENV === 'production') {

@@ -1,11 +1,18 @@
 import request from 'superagent'
 
-
-
-const rootUrl = "/api/v1/maps/:locations"
+const rootUrl = "/api/v1/maps/"
 export async function getNearByLocations(locations){
-  const response = await request.get(`${rootUrl}/${locations}`)
-  // const response = await request.get('https://pokeapi.co/api/v2/pokemon/ditto')
- console.log("fdsa",response.body)
-  return response.body
+  try {
+   
+    const locationsObj = {
+      location:locations.queryKey[1]
+    }
+   
+    const response = await request.post(rootUrl).send(locationsObj);
+    return response;
+  } catch (error) {
+    console.error('Error fetching nearby locations:', error);
+    throw error; 
+  }
+
 }
