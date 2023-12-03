@@ -26,7 +26,6 @@
     ]
   },
   "dependencies": {
-    "@esbuild/linux-x64": "^0.19.8",
     "@tanstack/react-query": "^4.29.12",
     "express": "^4.17.2",
     "knex": "^2.5.1",

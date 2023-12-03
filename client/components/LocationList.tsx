@@ -46,16 +46,17 @@ export default function LocationList(props) {
       <button>search coordinates</button>
 
     </form> */}
-      {/* Container for nearby locations */}
-      <div className="nearbyLocationsContainer">
-        {location.body.results.map((data) => (
-          <div key={data.place_id} className="locationContainer">
-            {data.name}
-          </div>
-        ))}
-      </div>
+    {/* Container for nearby locations */}
+    <div className = "nearbyLocationsContainer">
 
-      <button onClick={handleClick}>Fight</button>
+      {location.body.results.map((data)=><div key = {data.place_id}className = "locationContainer">{data.name}</div>)} 
+
+    </div>
+      <div className='fightButtonContainer'>
+        <button className="fightButton" onClick={handleClick}>
+            Fight
+          </button>
+      </div>
     </>
   )
 }

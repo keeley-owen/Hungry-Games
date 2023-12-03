@@ -1,29 +1,171 @@
-.nearbyLocationsContainer{
-  border:1px solid black;
-  padding:50px;
-
-  display:flex;
-  justify-content: space-around;
-  gap:20px;
-  overflow: auto;
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #1e1e1e;
+  color: #fff;
 }
-.locationContainer{
-  text-align:center;
-  height:50px;
-  width:200px;
-  display:flex;
+
+.container {
+  margin: 20px;
+}
+
+/* Add Gradient and Box Shadow to Nearby Locations Container */
+.nearbyLocationsContainer {
+  border: 1px solid #2c2c2c;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+  overflow: auto;
+  transition: padding 0.3s ease-in-out;
+  background: linear-gradient(180deg, #333, #1e1e1e);
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.locationContainer {
+  text-align: center;
+  height: 100px;
+  width: 200px;
+  display: flex;
   justify-content: center;
   align-items: center;
-  border:1px solid black;
+  border: 1px solid #404040;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+  margin-bottom: 20px;
 }
-.arenaContainer{
-  height:500px;
-  width:100%;
-  border:1px solid black;
+
+.locationContainer:hover {
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
 }
-.arenaFighter{
-  width:100px;
-  border:1px solid black;
-  margin-bottom: 5px;
+
+/* Add Gradient and Box Shadow to Arena Container */
+.arenaContainer {
+  height: 500px;
+  width: 100%;
+  border: 1px solid #2c2c2c;
+  margin-top: 20px;
+  position: relative;
+  overflow: auto;
+  display: flex;
+  flex-direction: row;
+  background: linear-gradient(180deg, #333, #1e1e1e);
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Add Gradient, Box Shadow, and Hover Animation to Arena Fighter */
+.arenaFighter {
+  width: 100px;
+  height: 100px;
+  border: 1px solid #404040;
+  margin-right: 5px;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #333, #1e1e1e);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background 0.3s ease-in-out;
+  position: relative;
+}
+
+.arenaFighter:hover {
+  transform: scale(1.2) rotate(20deg);
+  box-shadow: 0 0 20px rgba(255, 165, 0, 0.8);
+  background: linear-gradient(180deg, #ffd700, #ffd700);
+  color: #333; /* Darker text color on hover */
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.arenaFighter:hover::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 165, 0, 0.8) 0%, transparent 80%);
+  animation: pulse 1s infinite;
+}
+
+/* Form Container */
+#form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 20px;
+  background: linear-gradient(180deg, #333, #1e1e1e);
+  padding: 20px;
+  border: 1px solid #404040;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Styling for the Submit Button */
+.sumbitButton {
+  background-color: rgb(60, 1, 127);
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  margin-top: 10px;
+}
+
+.sumbitButton:hover {
+  background-color: #5d0e8b;
+}
+
+/* Styling for the Form Input */
+#form-container input {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  border: 1px solid #404040;
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-color: #404040;
+  color: #fff;
+}
+
+/* Fight Button Container */
+.fightButtonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Style for the Fight Button */
+.fightButton {
+  background-color: #b11818;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.fightButton:hover {
+  background-color: #fd0000;
 }
