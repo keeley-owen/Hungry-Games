@@ -5,31 +5,23 @@ import { Link, useNavigate } from 'react-router-dom'
 import Arena from './Arena'
 export default function LocationList(props) {
   const navigate = useNavigate()
-  console.log("this is prop",props.nearbyLocation.split(',').join('%2C'))
+  console.log('this is prop', props.nearbyLocation.split(',').join('%2C'))
   // const [coordinates, setCoordinates] = useState('')
   const splitText = props.nearbyLocation.split(',')
   const {
-
     data: location,
     isLoading,
     error,
-
   } = useQuery({
-    
-    queryKey: ['location',splitText.join('%2C')],
+    queryKey: ['location', splitText.join('%2C')],
     queryFn: getNearByLocations,
-
   })
-  
+
   if (error) {
-
     return <p>This is an Error</p>
-
   }
   if (!location || isLoading) {
-
     return <p>Loading Locations.....</p>
-
   }
   // function handleClick(e) {
   //   e.preventDefault()
@@ -38,32 +30,35 @@ export default function LocationList(props) {
 
   // }
 
-
-  function handleClick(e){
+  function handleClick(e) {
     e.preventDefault()
-    console.log("clicked")
-    navigate('/arena', { state: { results: location.body.results } });
+    console.log('clicked')
+    navigate('/arena', { state: { results: location.body.results } })
   }
-  console.log("locations",location.body.results)
+  console.log('locations', location.body.results)
 
   return (
     <>
-    {/* <form onSubmit={handleClick}>
+      {/* <form onSubmit={handleClick}>
 
       <label htmlFor="text">coordinates</label>
       <input type="text" name="coordinates" />
       <button>search coordinates</button>
 
     </form> */}
-    {/* Container for nearby locations */}
-    <div className = "nearbyLocationsContainer">
+      {/* Container for nearby locations */}
+      <div className="nearbyLocationsContainer">
+        {location.body.results.map((data) => (
+          <div key={data.place_id} className="locationContainer">
+            {data.name}
+          </div>
+        ))}
+      </div>
 
-      {location.body.results.map((data)=><div key = {data.place_id}className = "locationContainer">{data.name}</div>)} 
-
-    </div>
-
-    <button onClick = {handleClick}>Fight</button>
+      <button onClick={handleClick}>Fight</button>
+      {/* {location.body.results[0] != null && (
+    <Details locations={location.body.results} />
+   )} */}
     </>
-    
   )
 }
