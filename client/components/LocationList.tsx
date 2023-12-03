@@ -56,9 +56,6 @@ export default function LocationList(props) {
       </div>
 
       <button onClick={handleClick}>Fight</button>
-      {/* {location.body.results[0] != null && (
-    <Details locations={location.body.results} />
-   )} */}
     </>
   )
 }
