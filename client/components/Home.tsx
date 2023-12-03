@@ -25,6 +25,7 @@ export default function Home() {
       ...formData,
       [name]: value,
     })
+    console.log("from handleChange",formData)
   }
 
   if (error) {
@@ -35,18 +36,26 @@ export default function Home() {
     return <p>Loading...</p>
   }
   
-  const coordinates = `${latitude},${longitude}`
+  // const coordinates = `${latitude},${longitude}`
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setPlace(coordinates)
+    
+    console.log("from handleSubmiot",formData)
     const searchInput = formData.address.split(' ')
     const apiQuery = searchInput.join('%20')
     const currentLocation = await getCurrentLocationApi(apiQuery)
     try {
       
-      setLatitude(currentLocation.results[0].geometry.location.lat)
-      setLongitude(currentLocation.results[0].geometry.location.lng)
-      
+      // setLatitude(currentLocation.results[0].geometry.location.lat)
+      // setLongitude(currentLocation.results[0].geometry.location.lng)
+      const lat = currentLocation.results[0].geometry.location.lat
+      const long = currentLocation.results[0].geometry.location.lng
+      const coordinates = `${lat},${long}`
+      console.log("currentLocation",currentLocation.results[0].geometry.location.lat)
+      setPlace(coordinates)
+      console.log("coordinates",coordinates)
+      console.log("apiQuery",apiQuery)
+      console.log("latitude",latitude)
     // console.log("adsf",coordinates)
     } catch (error) {
       console.error('location is sad :(', error)
