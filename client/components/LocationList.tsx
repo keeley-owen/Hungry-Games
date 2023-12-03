@@ -61,8 +61,11 @@ export default function LocationList(props) {
       {location.body.results.map((data)=><div key = {data.place_id}className = "locationContainer">{data.name}</div>)} 
 
     </div>
-
-    <button onClick = {handleClick}>Fight</button>
+      <div className='fightButtonContainer'>
+        <button className="fightButton" onClick={handleClick}>
+            Fight
+          </button>
+      </div>
     </>
     
   )

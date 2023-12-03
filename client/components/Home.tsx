@@ -67,6 +67,7 @@ export default function Home() {
   
   return (
     <>
+    <div id="form-container">
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -90,6 +91,7 @@ export default function Home() {
         <p>Location is sad {':('} </p>
       )} */}
       <LocationList nearbyLocation = {place}/>
+    </div>
     </>
   )
 }
