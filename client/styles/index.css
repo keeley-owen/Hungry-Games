@@ -16,3 +16,14 @@
   align-items: center;
   border:1px solid black;
 }
+.arenaContainer{
+  height:500px;
+  width:100%;
+  border:1px solid black;
+}
+.arenaFighter{
+  width:100px;
+  border:1px solid black;
+  margin-bottom: 5px;
+  text-align: center;
+}
