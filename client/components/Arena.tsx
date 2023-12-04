@@ -5,6 +5,7 @@ import { AreanFighter } from './ArenaFighter'
 interface Coordinates {
   x: number
   y: number
+  yOffset: number
 }
 
 interface Results {
@@ -14,12 +15,43 @@ interface Results {
 }
 
 const moveSpeed = 1
+const indexMoveSpeedEffect = 1.5
+
+function getRandomInt(min: number, max: number) {
+  min = Math.ceil(min)
+  max = Math.floor(max)
+  return Math.floor(Math.random() * (max - min + 1)) + min
+}
+
+class RandomNumberGenerator {
+  private seed: number
+
+  constructor(seed: number) {
+    this.seed = seed
+  }
+
+  // Generate a random number between min (inclusive) and max (inclusive)
+  public generateRandomNumber(min: number, max: number): number {
+    const a = 7052342 // Multiplier
+    const c = 2660 // Increment
+
+    const m = Math.pow(2, 32) // Modulus
+
+    // Linear Congruential Generator formula
+    this.seed = (a * this.seed + c) % m
+
+    // Scale the generated number to fit within the specified range
+    const scaledRandom = min + (this.seed % (max - min + 1))
+    return Math.floor(scaledRandom)
+  }
+}
 
 export default function Arena() {
   const location = useLocation()
   const [coordinates, setCoordinates] = useState<Coordinates[]>([])
-
   useEffect(() => {
+    console.log('UseEffect')
+
     const coordArray = []
 
     location.state.results.forEach((element, index: number) => {
@@ -33,10 +65,36 @@ export default function Arena() {
 
     const token = setInterval(() => {
       setCoordinates((prev) =>
-        prev.map((element) => {
-          const x = element.x + 1
-          const y = element.y + 1
-          return { x, y }
+        prev.map((element, index) => {
+          // Calculate the differences in x and y
+          const xDiff = element.x - 400
+          const yDiff = element.y - 400
+
+          // Calculate the distance using Pythagorean theorem
+          const distance = Math.sqrt(xDiff * xDiff + yDiff * yDiff)
+
+          const jumpHeight = Math.abs(Math.sin(distance * 0.1 + index)) * -10
+
+          const rng = new RandomNumberGenerator(index)
+          const randomVal = rng.generateRandomNumber(
+            0,
+            location.state.results.length,
+          )
+
+          const speedEffect =
+            moveSpeed +
+            (randomVal / location.state.results.length) * indexMoveSpeedEffect
+
+          // Normalize x and y differentials
+          const normalizedXDif = (xDiff / distance) * speedEffect
+
+          const normalizedYDif = (yDiff / distance) * speedEffect
+
+          // Update x and y coordinates
+          const x = element.x - normalizedXDif
+          const y = element.y - normalizedYDif
+
+          return { x, y, yOffset: jumpHeight }
         }),
       )
     }, 1000 / 60)
@@ -60,7 +118,7 @@ export default function Arena() {
               <AreanFighter
                 data={data}
                 x={coordinates[index].x}
-                y={coordinates[index].y}
+                y={coordinates[index].y + coordinates[index].yOffset}
                 key={index}
               />
             )
