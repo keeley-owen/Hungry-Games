@@ -32,8 +32,8 @@ class RandomNumberGenerator {
 
   // Generate a random number between min (inclusive) and max (inclusive)
   public generateRandomNumber(min: number, max: number): number {
-    const a = 72005 // Multiplier
-    const c = 3442660 // Increment
+    const a = 7052342 // Multiplier
+    const c = 2660 // Increment
 
     const m = Math.pow(2, 32) // Modulus
 
