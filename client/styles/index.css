@@ -45,17 +45,23 @@ body {
 
 /* Add Gradient and Box Shadow to Arena Container */
 .arenaContainer {
-  height: 500px;
-  width: 100%;
+  height: 800px;
+  width: 800px;
   border: 1px solid #2c2c2c;
-  margin-top: 20px;
-  position: relative;
+  position:absolute;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+  margin:auto;
+  padding:50px;
   overflow: auto;
   display: flex;
   flex-direction: row;
   background: linear-gradient(180deg, #333, #1e1e1e);
   border-radius: 8px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
 }
 
 /* Add Gradient, Box Shadow, and Hover Animation to Arena Fighter */
@@ -70,10 +76,23 @@ body {
   align-items: center;
   border-radius: 8px;
   background: linear-gradient(180deg, #333, #1e1e1e);
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background 0.3s ease-in-out;
-  position: relative;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; background: 0.3s ease-in-out;
+  position: absolute;
 }
-
+.circle{
+  position:absolute;
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
+  margin:auto;
+  border-radius:50%;
+  border:1px solid red;
+  
+  height:200px;
+  width:200px;
+  
+}
 .arenaFighter:hover {
   transform: scale(1.2) rotate(20deg);
   box-shadow: 0 0 20px rgba(255, 165, 0, 0.8);
@@ -169,3 +188,52 @@ body {
 .fightButton:hover {
   background-color: #fd0000;
 }
+
+
+/* Add Gradient and Box Shadow to Winner Container */
+.winnerContainer {
+  height: 300px; /* Set a fixed height or adjust as needed */
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  padding: 20px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(180deg, #333, #1e1e1e);
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Add Gradient, Box Shadow, and Hover Animation to Winner Fighter */
+.winnerFighter {
+  width: 500px; /* Adjust the width based on your preference */
+  height: 300px; /* Adjust the height based on your preference */
+  border: 1px solid #404040;
+  margin-right: 5px;
+  text-align: center;
+  display: flex;
+  flex-direction: column; /* Arrange content vertically */
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #333, #1e1e1e);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background 0.3s ease-in-out;
+}
+
+/* Adjust the position of the winnerFighter */
+.winnerFighter:hover {
+  transform: scale(1.2) ;
+  box-shadow: 0 0 20px rgba(255, 165, 0, 0.8);
+  background: linear-gradient(180deg, #ffd700, #ffd700);
+  color: #333; /* Darker text color on hover */
+}
+
+
+
+
+
+

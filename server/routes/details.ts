@@ -4,8 +4,6 @@ import request from 'superagent'
 const router = Router()
 
 // const key = 'AIzaSyAkvAo_kfC8euKVSSYrkm0vgze_UvNZmgw'
-const url =
-  'https://places.googleapis.com/v1/places/ChIJj61dQgK6j4AR4GeTYWZsKWw?fields=id,displayName&key=AIzaSyCLCHcoB2bknGHj_NVD0Q4bKERJ2t1GwvY'
 
 router.get('/:apiWinner', async (req, res) => {
   try {
