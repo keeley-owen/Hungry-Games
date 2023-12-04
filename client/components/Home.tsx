@@ -71,7 +71,6 @@ export default function Home() {
           </button>
         </form>
 
-        {console.log(place)}
         <LocationList nearbyLocation={place} radius={formData.radius} />
       </div>
     </>
