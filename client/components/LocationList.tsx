@@ -41,6 +41,7 @@ export default function LocationList(props) {
             {data.name}
           </div>
         ))}
+        {console.log(location.body.results)}
       </div>
       <div className="fightButtonContainer">
         <button className="fightButton" onClick={handleClick}>
@@ -48,7 +49,6 @@ export default function LocationList(props) {
         </button>
       </div>
       <div className="winnerContainer">
-        
         <Details winner={winner?.place_id} />
       </div>
     </>
