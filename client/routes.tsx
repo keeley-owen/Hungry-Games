@@ -5,6 +5,7 @@ import Arena from "./components/Arena";
 import Header from "./components/Header";
 
 import { createBrowserRouter, Route, createRoutesFromElements } from 'react-router-dom'
+import Details from "./components/Details";
 
 export const routes = createRoutesFromElements(
   
@@ -14,6 +15,7 @@ export const routes = createRoutesFromElements(
   </Route>
   
   <Route path = '/arena' element = { <Arena />}/>
+  <Route path = '/winner ' element = {<Details />}/>
   </>
   
 
