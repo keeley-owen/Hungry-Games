@@ -23,7 +23,6 @@ export default function Home() {
       ...formData,
       [name]: value,
     })
-    console.log('from handleChange', formData)
   }
 
   if (error) {
