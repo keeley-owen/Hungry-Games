@@ -1,8 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { getNearByLocations } from '../apis/maps'
 import { useNavigate } from 'react-router-dom'
-import Details from './Details'
-import { useState } from 'react'
 
 interface Props {
   radius: number
@@ -41,13 +39,13 @@ export default function LocationList({ radius, nearbyLocation }: Props) {
   function handleClick(e) {
     e.preventDefault()
 
-    navigate('/arena', { state: { results: location.body.results } })
-
+    navigate('/arena', {
+      state: { results: location?.body.results, winner: randomValue },
+    })
   }
 
   return (
     <>
-
       {location.body.results.length >= 1 ? (
         <div className="nearbyLocationsContainer">
           {location.body.results.map((data) => (
