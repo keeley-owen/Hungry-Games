@@ -70,9 +70,6 @@ export default function LocationList({ radius, nearbyLocation }: Props) {
           ''
         )}
       </div>
-      <div className="winnerContainer">
-        <Details winner={winner?.place_id} />
-      </div>
     </>
   )
 }
