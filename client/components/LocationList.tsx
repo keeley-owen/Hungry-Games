@@ -42,6 +42,7 @@ export default function LocationList(props) {
   function handleClick(e){
     e.preventDefault()
     console.log("clicked")
+    
     navigate('/arena', { state: { results: location.body.results } });
   }
   console.log("locations",location.body.results)
