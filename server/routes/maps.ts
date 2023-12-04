@@ -16,7 +16,7 @@ router.post('/', async (req, res) => {
     //unstable coordinate -41.297775,174.773435
     //stable coordinates -33.8670522,151.1957362
     const response = await request.get(
-      `https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=cruise&location=${coordinate}&radius=10000&type=restaurant&key=AIzaSyCLCHcoB2bknGHj_NVD0Q4bKERJ2t1GwvY`,
+      `https://maps.googleapis.com/maps/api/place/nearbysearch/json?&location=${coordinate}&radius=1500&type=restaurant&excludedtypes=hotel&key=AIzaSyCLCHcoB2bknGHj_NVD0Q4bKERJ2t1GwvY`,
     )
 
     res.json(response.body)

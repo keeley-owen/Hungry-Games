@@ -1,34 +1,19 @@
 import { useQuery } from '@tanstack/react-query'
 import { getLocationsDetailsApi } from '../apis/details'
-import { useEffect, useState } from 'react'
 
-interface Location {
-  name: string
-}
 
-export default async function Details(listProps) {
-  const [currentLocation, setCurrentLocation] = useState<Location | null>(null)
-  const { data, error, isLoading } = useQuery({
-    queryKey: [],
-    queryFn: getLocationsDetailsApi,
+export default function Details(winner) {
+  const {
+    data: realWinner,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ['apiWinner', winner.winner],
+    queryFn: async () => await getLocationsDetailsApi(winner.winner),
   })
 
-  useEffect(() => {
-    if (data) {
-      const selectedLocations = listProps
-      const randomValue = Math.floor(Math.random() * selectedLocations.length)
-      const winner = selectedLocations[randomValue]
-      const apiWinner = winner.place_id
-
-      getLocationsDetailsApi(apiWinner)
-        .then((location) => {
-          setCurrentLocation(location)
-        })
-        .catch((error) => {
-          console.error('Error fetching location details', error)
-        })
-    }
-  }, [data, listProps])
+  console.log('realWinner: ', realWinner)
+  console.log('winnerwinner: ', winner.winner)
 
   if (isLoading) {
     return <p>Loading...</p>
@@ -37,10 +22,11 @@ export default async function Details(listProps) {
   if (error) {
     console.log(error)
   }
+  console.log(realWinner)
 
   return (
     <>
-      <div>{currentLocation && <div>{currentLocation.name}</div>}</div>
+      <div>{realWinner.displayName.text}</div>
     </>
   )
 }
