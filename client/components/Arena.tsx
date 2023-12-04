@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import { AreanFighter } from './ArenaFighter'
+import { ArenaFighter } from './ArenaFighter'
 import Header from './Header'
 import Details from './Details'
 
@@ -139,7 +139,7 @@ export default function Arena() {
             ? results.map((data: Results, index: number) => {
                 // console.log(results.isDead == true)
                 return (
-                  <AreanFighter
+                  <ArenaFighter
                     isDead={coordinates[index].isDead}
                     data={data}
                     x={coordinates[index].x}

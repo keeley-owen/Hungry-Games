@@ -11,7 +11,7 @@ interface Results {
   icon_background_color: string
 }
 
-export function AreanFighter(props: ArenaFighter) {
+export function ArenaFighter(props: ArenaFighter) {
   return (
     <div
       style={{

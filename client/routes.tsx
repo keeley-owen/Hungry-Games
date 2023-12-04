@@ -1,15 +1,12 @@
 import App from './components/App'
 import Home from './components/Home'
-import LocationList from './components/LocationList'
 import Arena from './components/Arena'
-import Header from './components/Header'
 
 import {
   createBrowserRouter,
   Route,
   createRoutesFromElements,
 } from 'react-router-dom'
-import Details from './components/Details'
 
 export const routes = createRoutesFromElements(
   <>
