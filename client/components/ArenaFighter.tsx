@@ -2,6 +2,7 @@ interface ArenaFighter {
   x: number
   y: number
   data: Results
+  isDead: boolean
 }
 
 interface Results {
@@ -16,6 +17,7 @@ export function AreanFighter(props: ArenaFighter) {
       style={{
         top: `${props.y}px`,
         left: `${props.x}px`,
+        display: `${props.isDead ? 'none' : 'flex'}`,
         backgroundColor: props.data.icon_background_color,
       }}
       key={props.data.place_id}

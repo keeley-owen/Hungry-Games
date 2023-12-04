@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { AreanFighter } from './ArenaFighter'
+import Header from './Header'
 
 interface Coordinates {
   x: number
   y: number
   yOffset: number
+  isDead: boolean
 }
 
 interface Results {
@@ -66,35 +68,47 @@ export default function Arena() {
     const token = setInterval(() => {
       setCoordinates((prev) =>
         prev.map((element, index) => {
-          // Calculate the differences in x and y
-          const xDiff = element.x - 400
-          const yDiff = element.y - 400
+          if (!element.isDead) {
+            // Calculate the differences in x and y
+            const xDiff = element.x - 400
+            const yDiff = element.y - 400
 
-          // Calculate the distance using Pythagorean theorem
-          const distance = Math.sqrt(xDiff * xDiff + yDiff * yDiff)
+            // Calculate the distance using Pythagorean theorem
+            const distance = Math.sqrt(xDiff * xDiff + yDiff * yDiff)
 
-          const jumpHeight = Math.abs(Math.sin(distance * 0.1 + index)) * -10
+            const jumpHeight = Math.abs(Math.sin(distance * 0.1 + index)) * -10
 
-          const rng = new RandomNumberGenerator(index)
-          const randomVal = rng.generateRandomNumber(
-            0,
-            location.state.results.length,
-          )
+            const rng = new RandomNumberGenerator(index + location.state.winner)
+            const randomVal = rng.generateRandomNumber(
+              0,
+              location.state.results.length,
+            )
 
-          const speedEffect =
-            moveSpeed +
-            (randomVal / location.state.results.length) * indexMoveSpeedEffect
+            const speedEffect =
+              moveSpeed +
+              (randomVal / location.state.results.length) * indexMoveSpeedEffect
 
-          // Normalize x and y differentials
-          const normalizedXDif = (xDiff / distance) * speedEffect
+            // Normalize x and y differentials
+            const normalizedXDif = (xDiff / distance) * speedEffect
 
-          const normalizedYDif = (yDiff / distance) * speedEffect
+            const normalizedYDif = (yDiff / distance) * speedEffect
 
-          // Update x and y coordinates
-          const x = element.x - normalizedXDif
-          const y = element.y - normalizedYDif
+            // Update x and y coordinates
+            const x = element.x - normalizedXDif
+            const y = element.y - normalizedYDif
 
-          return { x, y, yOffset: jumpHeight }
+            return {
+              x,
+              y,
+              yOffset: jumpHeight,
+              isDead:
+                Math.random() <= 0.01 && index != location.state.winner
+                  ? true
+                  : false,
+            }
+          } else {
+            return { x: 0, y: 0, yOffset: 0, isDead: true }
+          }
         }),
       )
     }, 1000 / 60)
@@ -110,12 +124,15 @@ export default function Arena() {
   const maxValue: number = (2 * Math.PI) / results.length
 
   return (
+    <>
+      <Header />      
     <div className="arenaContainer">
       <div className="circle"></div>
       {coordinates[0]
         ? results.map((data: Results, index: number) => {
             return (
               <AreanFighter
+                isDead={coordinates[index].isDead}
                 data={data}
                 x={coordinates[index].x}
                 y={coordinates[index].y + coordinates[index].yOffset}
@@ -125,5 +142,6 @@ export default function Arena() {
           })
         : ''}
     </div>
+    </>
   )
 }
