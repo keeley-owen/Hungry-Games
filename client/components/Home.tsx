@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query'
 import LocationList from './LocationList'
 const initialFormData = {
   address: '',
+  radius: 3000,
 }
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
   const [latitude, setLatitude] = useState(null)
   const [longitude, setLongitude] = useState(null)
   const [place, setPlace] = useState('')
+  const [oldVal, setOldVal] = useState<boolean>(false)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -43,6 +45,7 @@ export default function Home() {
       const long = currentLocation.results[0].geometry.location.lng
       const coordinates = `${lat},${long}`
       setPlace(coordinates)
+      setOldVal(!oldVal)
     } catch (error) {
       setLatitude(null)
       setLongitude(null)
@@ -59,12 +62,22 @@ export default function Home() {
             value={formData.address}
             onChange={handleInputChange}
           />
+          <input
+            type="text"
+            name="radius"
+            value={formData.radius}
+            onChange={handleInputChange}
+          />
           <button className="sumbitButton" type="submit">
             SUBMIT LOCATION
           </button>
         </form>
-   
-        <LocationList nearbyLocation={place} />
+
+        <LocationList
+          changed={oldVal}
+          nearbyLocation={place}
+          radius={formData.radius}
+        />
       </div>
     </>
   )

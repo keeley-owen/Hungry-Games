@@ -2,19 +2,30 @@ import { useQuery } from '@tanstack/react-query'
 import { getNearByLocations } from '../apis/maps'
 import { useNavigate } from 'react-router-dom'
 import Details from './Details'
+import { useState } from 'react'
 
 export default function LocationList(props) {
   const navigate = useNavigate()
   const splitText = props.nearbyLocation.split(',')
+  const [oldVal, setOldVal] = useState<boolean>(false)
 
   const {
     data: location,
     isLoading,
     error,
+    refetch,
   } = useQuery({
     queryKey: ['location', splitText.join('%2C')],
-    queryFn: getNearByLocations,
+    enabled: false,
+    queryFn: () =>
+      getNearByLocations({ radius: props.radius, key: splitText.join('%2C') }),
   })
+
+  if (props.changed != oldVal) {
+    console.log('refetching')
+    setOldVal(props.changed)
+    refetch()
+  }
 
   if (error) {
     return <p>This is an Error</p>
@@ -25,7 +36,6 @@ export default function LocationList(props) {
 
   function handleClick(e) {
     e.preventDefault()
-    console.log('clicked')
     navigate('/arena', { state: { results: location.body.results } })
   }
 
@@ -41,7 +51,6 @@ export default function LocationList(props) {
             {data.name}
           </div>
         ))}
-        {console.log(location.body.results)}
       </div>
       <div className="fightButtonContainer">
         <button className="fightButton" onClick={handleClick}>

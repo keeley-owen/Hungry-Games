@@ -2,9 +2,11 @@ import request from 'superagent'
 
 const rootUrl = '/api/v1/maps/'
 export async function getNearByLocations(locations: any) {
+  console.log(locations)
   try {
     const locationsObj = {
-      location: locations.queryKey[1],
+      location: locations.key,
+      radius: locations.radius,
     }
     const response = await request.post(rootUrl).send(locationsObj)
     return response
