@@ -9,7 +9,7 @@ export async function getNearByLocations(locations: any) {
       radius: locations.radius,
     }
     const response = await request.post(rootUrl).send(locationsObj)
-    return response
+    return response.body.results
   } catch (error) {
     console.error('Error fetching nearby locations:', error)
     throw error
