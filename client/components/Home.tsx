@@ -63,7 +63,7 @@ export default function Home() {
             SUBMIT LOCATION
           </button>
         </form>
-   
+
         <LocationList nearbyLocation={place} />
       </div>
     </>
