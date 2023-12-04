@@ -19,6 +19,41 @@ export default function Details(winner) {
     console.log(error)
   }
 
+  const isOpen = () => {
+    if (realWinner.delivery == true) {
+      return 'Delivery Available'
+    } else {
+      return ''
+    }
+  }
+  const isDog = () => {
+    if (realWinner.allowsDogs == true) {
+      return <img src="imgs/dug.jpeg" />
+    } else {
+      return ''
+    }
+  }
+
+  const hasDays = () => {
+    if (realWinner.regularOpeningHours.weekdayDescriptions[0] != undefined) {
+      return (
+        <>
+          Opening hours: <br />
+          {realWinner.regularOpeningHours.weekdayDescriptions[0]} <br />
+          {realWinner.regularOpeningHours.weekdayDescriptions[1]} <br />
+          {realWinner.regularOpeningHours.weekdayDescriptions[2]} <br />
+          {realWinner.regularOpeningHours.weekdayDescriptions[3]} <br />
+          {realWinner.regularOpeningHours.weekdayDescriptions[4]} <br />
+          {realWinner.regularOpeningHours.weekdayDescriptions[5]} <br />
+          {realWinner.regularOpeningHours.weekdayDescriptions[6]}
+          <br />{' '}
+        </>
+      )
+    } else {
+      return ' '
+    }
+  }
+
   if (realWinner != null) {
     return (
       <>
@@ -28,26 +63,9 @@ export default function Details(winner) {
           Rating: {realWinner.rating} <br />
           Address: {realWinner.formattedAddress}
           <br />
-          Opening hours: <br />
-          {realWinner.regularOpeningHours.weekdayDescriptions[0] ||
-            undefined}{' '}
-          <br />
-          {realWinner.regularOpeningHours.weekdayDescriptions[1] ||
-            undefined}{' '}
-          <br />
-          {realWinner.regularOpeningHours.weekdayDescriptions[2] ||
-            undefined}{' '}
-          <br />
-          {realWinner.regularOpeningHours.weekdayDescriptions[3] ||
-            undefined}{' '}
-          <br />
-          {realWinner.regularOpeningHours.weekdayDescriptions[4] ||
-            undefined}{' '}
-          <br />
-          {realWinner.regularOpeningHours.weekdayDescriptions[5] ||
-            undefined}{' '}
-          <br />
-          {realWinner.regularOpeningHours.weekdayDescriptions[6] || undefined}
+          {hasDays()}
+          {isOpen()}
+          {isDog()}
         </div>
       </>
     )
