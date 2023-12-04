@@ -12,7 +12,7 @@ export default function Details(winner) {
   })
 
   if (isLoading) {
-    return <p>Loading...</p>
+    return <p></p>
   }
 
   if (error) {
@@ -28,14 +28,14 @@ export default function Details(winner) {
   }
   const isDog = () => {
     if (realWinner.allowsDogs == true) {
-      return <img src="imgs/dug.jpeg" />
+      return 'Dogs Allowed'
     } else {
       return ''
     }
   }
 
   const hasDays = () => {
-    if (realWinner.regularOpeningHours.weekdayDescriptions[0] != undefined) {
+    if (realWinner.regularOpeningHours != null) {
       return (
         <>
           Opening hours: <br />

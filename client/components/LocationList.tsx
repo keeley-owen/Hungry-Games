@@ -2,19 +2,28 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { getNearByLocations } from '../apis/maps'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Details from './Details'
 
-export default function LocationList(props) {
+interface Props {
+  radius: number
+  nearbyLocation: string
+}
+
+export default function LocationList({ radius, nearbyLocation }: Props) {
   const navigate = useNavigate()
-  const splitText = props.nearbyLocation.split(',')
 
   const {
     data: locations,
     isLoading,
     error,
   } = useQuery({
-    queryKey: ['location', splitText.join('%2C')],
-    queryFn: getNearByLocations,
+    queryKey: ['location', nearbyLocation, radius],
+    enabled: nearbyLocation !== '',
+    queryFn: async () => {
+      const coords = window.encodeURIComponent(nearbyLocation)
+      const result = await getNearByLocations({ radius: radius, key: coords })
+      console.log(result)
+      return result
+    },
   })
   interface Location {
     name: string
@@ -52,11 +61,22 @@ export default function LocationList(props) {
   
   }
   const nearbyLocations = locations
+
   const randomValue = Math.floor(Math.random() * nearbyLocations.length)
   const winner = nearbyLocations[randomValue]
 
+  function handleClick(e) {
+    e.preventDefault()
+
+    navigate('/arena', {
+      state: { results: locations, winner: randomValue },
+    })
+  }
+
   return (
     <>
+
+           {locations.length >= 1 ? (
       <div className="nearbyLocationsContainer">
         {locations.map((data, index) => (
           <div key={data.place_id} className="locationContainer">
@@ -66,13 +86,18 @@ export default function LocationList(props) {
         ))}
         {console.log(locations)}
       </div>
+          ) : (
+        ''
+      )}
+
       <div className="fightButtonContainer">
-        <button className="fightButton" onClick={handleClick}>
-          Fight
-        </button>
-      </div>
-      <div className="winnerContainer">
-        <Details winner={winner?.place_id} />
+        {locations.length >= 1 ? (
+          <button className="fightButton" onClick={handleClick}>
+            Fight
+          </button>
+        ) : (
+          ''
+        )}
       </div>
     </>
   )
