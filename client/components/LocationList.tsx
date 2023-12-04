@@ -4,28 +4,28 @@ import { useNavigate } from 'react-router-dom'
 import Details from './Details'
 import { useState } from 'react'
 
-export default function LocationList(props) {
+interface Props {
+  radius: number
+  nearbyLocation: string
+}
+
+export default function LocationList({ radius, nearbyLocation }: Props) {
   const navigate = useNavigate()
-  const splitText = props.nearbyLocation.split(',')
-  const [oldVal, setOldVal] = useState<boolean>(false)
 
   const {
     data: location,
     isLoading,
     error,
-    refetch,
   } = useQuery({
-    queryKey: ['location', splitText.join('%2C')],
-    enabled: false,
-    queryFn: () =>
-      getNearByLocations({ radius: props.radius, key: splitText.join('%2C') }),
+    queryKey: ['location', nearbyLocation, radius],
+    enabled: nearbyLocation !== '',
+    queryFn: async () => {
+      const coords = window.encodeURIComponent(nearbyLocation)
+      const result = await getNearByLocations({ radius: radius, key: coords })
+      console.log(result)
+      return result
+    },
   })
-
-  if (props.changed != oldVal) {
-    console.log('refetching')
-    setOldVal(props.changed)
-    refetch()
-  }
 
   if (error) {
     return <p>This is an Error</p>

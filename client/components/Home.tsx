@@ -17,7 +17,6 @@ export default function Home() {
   const [latitude, setLatitude] = useState(null)
   const [longitude, setLongitude] = useState(null)
   const [place, setPlace] = useState('')
-  const [oldVal, setOldVal] = useState<boolean>(false)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -45,7 +44,6 @@ export default function Home() {
       const long = currentLocation.results[0].geometry.location.lng
       const coordinates = `${lat},${long}`
       setPlace(coordinates)
-      setOldVal(!oldVal)
     } catch (error) {
       setLatitude(null)
       setLongitude(null)
@@ -73,11 +71,8 @@ export default function Home() {
           </button>
         </form>
 
-        <LocationList
-          changed={oldVal}
-          nearbyLocation={place}
-          radius={formData.radius}
-        />
+        {console.log(place)}
+        <LocationList nearbyLocation={place} radius={formData.radius} />
       </div>
     </>
   )
