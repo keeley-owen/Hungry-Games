@@ -11,6 +11,7 @@ router.get('/:apiQuery', async (req, res) => {
     const response = await request.get(
       `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&inputtype=textquery&key=AIzaSyC1cT-42Of0KFtbaYlwA3lPjtki0E9xFzM`,
     )
+    console.log('response current.ts', response)
     res.json(response.body)
   } catch (e) {
     res.status(500).json({ message: 'apiQuery is sad {":-("}' })

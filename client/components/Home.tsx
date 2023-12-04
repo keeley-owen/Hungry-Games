@@ -40,7 +40,7 @@ export default function Home() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     
-    console.log("from handleSubmiot",formData)
+    console.log("from handleSubmit",formData)
     const searchInput = formData.address.split(' ')
     const apiQuery = searchInput.join('%20')
     const currentLocation = await getCurrentLocationApi(apiQuery)

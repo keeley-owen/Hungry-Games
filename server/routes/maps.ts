@@ -16,9 +16,9 @@ router.post('/', async (req, res) => {
     //unstable coordinate -41.297775,174.773435
     //stable coordinates -33.8670522,151.1957362
     const response = await request.get(
-      `https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=cruise&location=${coordinate}&radius=10000&type=restaurant&key=AIzaSyCLCHcoB2bknGHj_NVD0Q4bKERJ2t1GwvY`,
+      `https://maps.googleapis.com/maps/api/place/nearbysearch/json?&location=${coordinate}&radius=1000&type=restaurant&key=AIzaSyCLCHcoB2bknGHj_NVD0Q4bKERJ2t1GwvY`,
     )
-
+      console.log('response maps.ts', response)
     res.json(response.body)
   } catch (e) {
     res.status(500).json({ message: 'Something went wrong' })
@@ -26,3 +26,5 @@ router.post('/', async (req, res) => {
 })
 //jk
 export default router
+
+ 
