@@ -35,7 +35,7 @@ export default function Details(winner) {
   }
 
   const hasDays = () => {
-    if (realWinner.regularOpeningHours.weekdayDescriptions.length >= 2) {
+    if (realWinner.regularOpeningHours != null) {
       return (
         <>
           Opening hours: <br />

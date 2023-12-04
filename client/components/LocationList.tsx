@@ -58,9 +58,6 @@ export default function LocationList(props) {
           ''
         )}
       </div>
-      <div className="winnerContainer">
-        <Details winner={winner?.place_id} />
-      </div>
     </>
   )
 }

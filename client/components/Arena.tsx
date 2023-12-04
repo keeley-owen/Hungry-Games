@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { AreanFighter } from './ArenaFighter'
 import Header from './Header'
+import Details from './Details'
 
 interface Coordinates {
   x: number
@@ -118,6 +119,54 @@ export default function Arena() {
     }
   }, [])
 
+  const [trueState, setTrueState] = useState(false)
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setTrueState(true)
+    }, 7000)
+
+    return () => clearTimeout(timeout)
+  }, [])
+  setTrueState
+
+  const conditionalWinner = () => {
+    if (trueState == false) {
+      return (
+        <div className="arenaContainer">
+          <div className="circle"></div>
+          {coordinates[0]
+            ? results.map((data: Results, index: number) => {
+                // console.log(results.isDead == true)
+                return (
+                  <AreanFighter
+                    isDead={coordinates[index].isDead}
+                    data={data}
+                    x={coordinates[index].x}
+                    y={coordinates[index].y + coordinates[index].yOffset}
+                    key={index}
+                  />
+                )
+              })
+            : ''}
+        </div>
+      )
+    } else {
+      const arrayValue = location.state.winner
+      console.log('winner ready')
+      console.log('arrayValue:', arrayValue)
+      console.log('location.state: ', location.state)
+      console.log('winner object: ', location.state.results[arrayValue])
+      return (
+        <>
+          <div className="winnerContainer">
+            <Details winner={location.state.results[arrayValue]?.place_id} />
+          </div>
+        </>
+      )
+    }
+  }
+
   const results = location.state.results
   // Now you can use 'results' in your Arena component
 
@@ -125,23 +174,9 @@ export default function Arena() {
 
   return (
     <>
-      <Header />      
-    <div className="arenaContainer">
-      <div className="circle"></div>
-      {coordinates[0]
-        ? results.map((data: Results, index: number) => {
-            return (
-              <AreanFighter
-                isDead={coordinates[index].isDead}
-                data={data}
-                x={coordinates[index].x}
-                y={coordinates[index].y + coordinates[index].yOffset}
-                key={index}
-              />
-            )
-          })
-        : ''}
-    </div>
+      <Header />
+
+      {conditionalWinner()}
     </>
   )
 }
