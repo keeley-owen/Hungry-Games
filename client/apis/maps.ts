@@ -1,18 +1,15 @@
 import request from 'superagent'
 
-const rootUrl = "/api/v1/maps/"
-export async function getNearByLocations(locations){
+const rootUrl = '/api/v1/maps/'
+export async function getNearByLocations(locations: any) {
   try {
-   
     const locationsObj = {
-      location:locations.queryKey[1]
+      location: locations.queryKey[1],
     }
-   
-    const response = await request.post(rootUrl).send(locationsObj);
-    return response;
+    const response = await request.post(rootUrl).send(locationsObj)
+    return response
   } catch (error) {
-    console.error('Error fetching nearby locations:', error);
-    throw error; 
+    console.error('Error fetching nearby locations:', error)
+    throw error
   }
-
 }

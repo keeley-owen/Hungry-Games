@@ -1,13 +1,10 @@
 import { useQuery } from '@tanstack/react-query'
-import { useState } from 'react'
 import { getNearByLocations } from '../apis/maps'
-import { Link, useNavigate } from 'react-router-dom'
-import Arena from './Arena'
+import { useNavigate } from 'react-router-dom'
 import Details from './Details'
 
 export default function LocationList(props) {
   const navigate = useNavigate()
-  console.log('this is prop', props.nearbyLocation.split(',').join('%2C'))
   const splitText = props.nearbyLocation.split(',')
 
   const {
@@ -31,7 +28,6 @@ export default function LocationList(props) {
     console.log('clicked')
     navigate('/arena', { state: { results: location.body.results } })
   }
-  console.log('locations', location.body.results)
 
   const nearbyLocations = location.body.results
   const randomValue = Math.floor(Math.random() * nearbyLocations.length)
@@ -50,6 +46,9 @@ export default function LocationList(props) {
         <button className="fightButton" onClick={handleClick}>
           Fight
         </button>
+      </div>
+      <div className="winnerContainer">
+        
         <Details winner={winner?.place_id} />
       </div>
     </>
