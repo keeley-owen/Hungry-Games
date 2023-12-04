@@ -35,18 +35,26 @@ export default function LocationList(props) {
 
   return (
     <>
-      <div className="nearbyLocationsContainer">
-        {location.body.results.map((data) => (
-          <div key={data.place_id} className="locationContainer">
-            {data.name}
-          </div>
-        ))}
-        {console.log(location.body.results)}
-      </div>
+      {location.body.results.length >= 1 ? (
+        <div className="nearbyLocationsContainer">
+          {location.body.results.map((data) => (
+            <div key={data.place_id} className="locationContainer">
+              {data.name}
+            </div>
+          ))}
+          {console.log(location.body.results)}
+        </div>
+      ) : (
+        ''
+      )}
       <div className="fightButtonContainer">
-        <button className="fightButton" onClick={handleClick}>
-          Fight
-        </button>
+        {location.body.results.length >= 1 ? (
+          <button className="fightButton" onClick={handleClick}>
+            Fight
+          </button>
+        ) : (
+          ''
+        )}
       </div>
       <div className="winnerContainer">
         <Details winner={winner?.place_id} />

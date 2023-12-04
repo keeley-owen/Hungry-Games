@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { AreanFighter } from './ArenaFighter'
+import Header from './Header'
 
 interface Coordinates {
   x: number
@@ -110,20 +111,23 @@ export default function Arena() {
   const maxValue: number = (2 * Math.PI) / results.length
 
   return (
-    <div className="arenaContainer">
-      <div className="circle"></div>
-      {coordinates[0]
-        ? results.map((data: Results, index: number) => {
-            return (
-              <AreanFighter
-                data={data}
-                x={coordinates[index].x}
-                y={coordinates[index].y + coordinates[index].yOffset}
-                key={index}
-              />
-            )
-          })
-        : ''}
-    </div>
+    <>
+      <Header />
+      <div className="arenaContainer">
+        <div className="circle"></div>
+        {coordinates[0]
+          ? results.map((data: Results, index: number) => {
+              return (
+                <AreanFighter
+                  data={data}
+                  x={coordinates[index].x}
+                  y={coordinates[index].y + coordinates[index].yOffset}
+                  key={index}
+                />
+              )
+            })
+          : ''}
+      </div>
+    </>
   )
 }
