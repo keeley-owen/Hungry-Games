@@ -23,15 +23,17 @@ export default function LocationList(props) {
     return <p>Loading Locations.....</p>
   }
 
-  function handleClick(e) {
-    e.preventDefault()
-    console.log('clicked')
-    navigate('/arena', { state: { results: location.body.results } })
-  }
-
   const nearbyLocations = location.body.results
   const randomValue = Math.floor(Math.random() * nearbyLocations.length)
   const winner = nearbyLocations[randomValue]
+
+  function handleClick(e) {
+    e.preventDefault()
+    console.log('clicked')
+    navigate('/arena', {
+      state: { results: location.body.results, winner: randomValue },
+    })
+  }
 
   return (
     <>
