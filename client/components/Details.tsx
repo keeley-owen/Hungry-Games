@@ -23,17 +23,31 @@ export default function Details(winner) {
     return (
       <>
         <div className="winnerFighter">
-          {realWinner.displayName.text} Rating: {realWinner.rating} <br />
+          {console.log(realWinner)}
+          <a href={realWinner.websiteUri}>{realWinner.displayName.text}</a>{' '}
+          Rating: {realWinner.rating} <br />
           Address: {realWinner.formattedAddress}
           <br />
           Opening hours: <br />
-          {realWinner.regularOpeningHours.weekdayDescriptions[0]} <br />
-          {realWinner.regularOpeningHours.weekdayDescriptions[1]} <br />
-          {realWinner.regularOpeningHours.weekdayDescriptions[2]} <br />
-          {realWinner.regularOpeningHours.weekdayDescriptions[3]} <br />
-          {realWinner.regularOpeningHours.weekdayDescriptions[4]} <br />
-          {realWinner.regularOpeningHours.weekdayDescriptions[5]} <br />
-          {realWinner.regularOpeningHours.weekdayDescriptions[6]}
+          {realWinner.regularOpeningHours.weekdayDescriptions[0] ||
+            undefined}{' '}
+          <br />
+          {realWinner.regularOpeningHours.weekdayDescriptions[1] ||
+            undefined}{' '}
+          <br />
+          {realWinner.regularOpeningHours.weekdayDescriptions[2] ||
+            undefined}{' '}
+          <br />
+          {realWinner.regularOpeningHours.weekdayDescriptions[3] ||
+            undefined}{' '}
+          <br />
+          {realWinner.regularOpeningHours.weekdayDescriptions[4] ||
+            undefined}{' '}
+          <br />
+          {realWinner.regularOpeningHours.weekdayDescriptions[5] ||
+            undefined}{' '}
+          <br />
+          {realWinner.regularOpeningHours.weekdayDescriptions[6] || undefined}
         </div>
       </>
     )
