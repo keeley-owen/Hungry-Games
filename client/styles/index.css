@@ -31,6 +31,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  display:flex;
+  flex-direction:column;
   border: 1px solid #404040;
   border-radius: 8px;
   cursor: pointer;
@@ -41,6 +43,7 @@ body {
 .locationContainer:hover {
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
   transform: scale(1.05);
+  
 }
 
 /* Add Gradient and Box Shadow to Arena Container */
