@@ -7,7 +7,7 @@ body {
 
 @font-face {
   font-family: futura;
-  src: './futura/futura medium.ttf';
+  src: './futura/futuralight.ttf';
 }
 
 /* 
@@ -184,6 +184,8 @@ body {
   text-align: center;
   transition: all 0.5s;
   cursor: pointer;
+  font-family: futura, sans-serif;
+  font-weight: bold;
 }
 
 .sumbitButton span {
@@ -253,6 +255,8 @@ body {
   transition: all 0.5s;
   cursor: pointer;
   margin: 5px;
+  font-family: futura, sans-serif;
+  font-weight: bold;
 }
 
 .fightButton span {
@@ -377,11 +381,11 @@ body {
   font-family: futura, sans-serif;
   text-decoration: none;
   color: white;
-  padding:5px;
+  font-weight: bold;
+  padding: 5px;
 }
-.winnerFighter:hover .winnerLink{
+.winnerFighter:hover .winnerLink {
   transform: scale(1.2);
- 
 
   color: #333; /* Darker text color on hover */
 }
@@ -390,12 +394,12 @@ body {
   color: black;
 }
 
-.winnerLink:hover {
+.winnerLink:enabled:hover {
   background-color: rgb(187, 187, 6);
-  width:200px;
-  transition: .5s;
-  
-  border-radius:10px;
+  width: 200px;
+  transition: 0.5s;
+
+  border-radius: 10px;
 }
 
 .inverted {
@@ -404,6 +408,8 @@ body {
 
 .header {
   background-color: rgb(0, 24, 201);
+  font-family: futura, sans-serif;
+  font-weight: bold;
   color: #fff;
   border: none;
   padding: 12px 20px;
