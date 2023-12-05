@@ -359,6 +359,21 @@ body {
   cursor: pointer;
 }
 
+
+
+
+
+.ratingContainer{
+  display:flex;
+  
+}
+.star{
+  margin-top:-0.5px;
+ font-size: 14px;
+
+ 
+}
+
 .bin:hover {
   background-color: #fd0000;
   border-radius: 100%;
@@ -366,3 +381,4 @@ body {
   color: #fff;
   cursor: pointer;
 }
+

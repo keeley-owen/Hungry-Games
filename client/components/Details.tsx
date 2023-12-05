@@ -53,6 +53,17 @@ export default function Details(winner) {
       return ' '
     }
   }
+  const starArr = []
+
+
+  for (let x = 0; x < Math.floor(realWinner.rating); x++) {
+    starArr.push('★')
+  }
+  const decimalPart = realWinner.rating % 1
+  console.log('decimal', decimalPart)
+  // if (decimalPart >= 0.5) {
+  //  <img src = "https://image.emojisky.com/127/511127-small.png">
+  // }
 
   const priceLevel = () => {
     if (realWinner.price_level != null) {
@@ -70,19 +81,20 @@ export default function Details(winner) {
     }
   }
 
-  function getStars(rating) {
-    const output = []
-    for (let i = rating; i >= 1; i--) output.push('☆')
-    for (let i = 5 - rating; i >= 1; i--) output.push(' ')
-    return output.join('')
-  }
 
   if (realWinner != null) {
     return (
       <>
         <div className="winnerFighter">
           <a href={realWinner.websiteUri}>{realWinner.displayName.text}</a>{' '}
-          Rating: <b id="star">{getStars(realWinner.rating)}</b> <br />
+
+          Rating:
+          <div className="ratingContainer">
+            {starArr}
+            {decimalPart >= 0.5 ? <span className="star">⯨</span> : undefined}
+          </div>
+          <br />
+
           Address: {realWinner.formattedAddress}
           <br />
           {phoneNumber()}
