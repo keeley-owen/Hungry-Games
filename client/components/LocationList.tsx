@@ -15,7 +15,7 @@ export default function LocationList({ radius, nearbyLocation }: Props) {
   }, [])
 
   const navigate = useNavigate()
-  console.log('nearbyLocation:', nearbyLocation)
+ 
 
   const {
     data: locations,
@@ -27,7 +27,7 @@ export default function LocationList({ radius, nearbyLocation }: Props) {
     queryFn: async () => {
       const coords = window.encodeURIComponent(nearbyLocation)
       const result = await getNearByLocations({ radius: radius, key: coords })
-      console.log(result)
+      
       setFetched(true)
       return result
     },
@@ -50,7 +50,7 @@ export default function LocationList({ radius, nearbyLocation }: Props) {
   })
   // const [locations, setLocations] = useState([])
 
-  console.log('click', locations)
+
   if (error) {
     return <p>This is an Error</p>
   }
@@ -84,7 +84,7 @@ export default function LocationList({ radius, nearbyLocation }: Props) {
                 {data.name}
               </div>
             ))}
-            {console.log(locations)}
+           
           </div>
         ) : (
           ''

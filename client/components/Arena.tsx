@@ -63,7 +63,6 @@ export default function Arena() {
   const [isExploding, setIsExploding] = useState(false)
 
   useEffect(() => {
-    console.log('UseEffect')
 
     const coordArray: Coordinates[] = []
 

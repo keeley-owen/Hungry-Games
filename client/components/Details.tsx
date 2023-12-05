@@ -59,10 +59,7 @@ export default function Details(winner) {
     starArr.push('★')
   }
   const decimalPart = realWinner.rating % 1
-  console.log('decimal', decimalPart)
-  // if (decimalPart >= 0.5) {
-  //  <img src = "https://image.emojisky.com/127/511127-small.png">
-  // }
+  
 
   const priceLevel = () => {
     if (realWinner.price_level != null) {
