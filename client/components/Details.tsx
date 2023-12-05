@@ -84,9 +84,11 @@ export default function Details(winner) {
     return (
       <>
         <div className="winnerFighter">
-          <a className="winnerLink" href={realWinner.websiteUri}>
-            {realWinner.displayName.text}
-          </a>{' '}
+          <h2>
+            <a className="winnerLink" href={realWinner.websiteUri}>
+              {realWinner.displayName.text}
+            </a>
+          </h2>{' '}
           Rating:
           <div className="ratingContainer">
             {starArr}

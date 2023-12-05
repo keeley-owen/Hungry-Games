@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { getNearByLocations } from '../apis/maps'
 import { useNavigate } from 'react-router-dom'
-import { Component, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 interface Props {
   radius: number
@@ -73,9 +73,7 @@ export default function LocationList({ radius, nearbyLocation }: Props) {
 
   return (
     <>
-
       <div className="wrapper">
-
         {locations.length >= 1 ? (
           <div className="nearbyLocationsContainer">
             {locations.map((data, index) => (
