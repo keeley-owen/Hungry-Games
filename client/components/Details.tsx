@@ -56,7 +56,7 @@ export default function Details(winner) {
   const starArr = []
 
   for (let x = 0; x < Math.floor(realWinner.rating); x++) {
-    starArr.push('★')
+    starArr.push('☆')
   }
   const decimalPart = realWinner.rating % 1
   console.log('decimal', decimalPart)
@@ -92,7 +92,7 @@ export default function Details(winner) {
           Rating:
           <div className="ratingContainer">
             {starArr}
-            {decimalPart >= 0.5 ? <span className="star">⯨</span> : undefined}
+            {decimalPart >= 0.5 ? <span className="star">⭒</span> : undefined}
           </div>
           <br />
           Address: {realWinner.formattedAddress}
