@@ -37,7 +37,7 @@ export default function Details(winner) {
   const hasDays = () => {
     if (realWinner.regularOpeningHours != null) {
       return (
-        <>
+        <div className="openingHours">
           Opening hours: <br />
           {realWinner.regularOpeningHours.weekdayDescriptions[0]} <br />
           {realWinner.regularOpeningHours.weekdayDescriptions[1]} <br />
@@ -47,7 +47,7 @@ export default function Details(winner) {
           {realWinner.regularOpeningHours.weekdayDescriptions[5]} <br />
           {realWinner.regularOpeningHours.weekdayDescriptions[6]}
           <br />{' '}
-        </>
+        </div>
       )
     } else {
       return ' '

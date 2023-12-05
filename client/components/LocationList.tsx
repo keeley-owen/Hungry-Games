@@ -73,22 +73,24 @@ export default function LocationList({ radius, nearbyLocation }: Props) {
 
   return (
     <>
-      <div className="wrapper">
-        {locations.length >= 1 ? (
-          <div className="nearbyLocationsContainer">
-            {locations.map((data, index) => (
-              <div key={data.place_id} className="locationContainer">
-                <button className="bin" onClick={() => handleDelete(index)}>
-                  ×
-                </button>{' '}
-                {data.name}
-              </div>
-            ))}
-            {console.log(locations)}
-          </div>
-        ) : (
-          ''
-        )}
+      <div>
+        <div className="wrapper">
+          {locations.length >= 1 ? (
+            <div className="nearbyLocationsContainer">
+              {locations.map((data, index) => (
+                <div key={data.place_id} className="locationContainer">
+                  <button className="bin" onClick={() => handleDelete(index)}>
+                    ×
+                  </button>{' '}
+                  {data.name}
+                </div>
+              ))}
+              {console.log(locations)}
+            </div>
+          ) : (
+            ''
+          )}
+        </div>
 
         <div className="fightButtonContainer">
           {locations.length >= 1 ? (
