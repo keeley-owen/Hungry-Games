@@ -28,7 +28,7 @@ export default function Details(winner) {
   }
   const isDog = () => {
     if (realWinner.allowsDogs == true) {
-      return 'Dogs Allowed'
+      return '𓃦'
     } else {
       return ''
     }
@@ -55,6 +55,7 @@ export default function Details(winner) {
   }
   const starArr = []
 
+
   for (let x = 0; x < Math.floor(realWinner.rating); x++) {
     starArr.push('★')
   }
@@ -63,20 +64,41 @@ export default function Details(winner) {
   // if (decimalPart >= 0.5) {
   //  <img src = "https://image.emojisky.com/127/511127-small.png">
   // }
+
+  const priceLevel = () => {
+    if (realWinner.price_level != null) {
+      return <p>Price Level: {realWinner.priceLevel}</p>
+    } else {
+      return ''
+    }
+  }
+
+  const phoneNumber = () => {
+    if (realWinner.nationalPhoneNumber != null) {
+      return <p> Phone Number: {realWinner.nationalPhoneNumber} </p>
+    } else {
+      return ''
+    }
+  }
+
+
   if (realWinner != null) {
     return (
       <>
         <div className="winnerFighter">
-          {console.log(realWinner)}
           <a href={realWinner.websiteUri}>{realWinner.displayName.text}</a>{' '}
+
           Rating:
           <div className="ratingContainer">
             {starArr}
             {decimalPart >= 0.5 ? <span className="star">⯨</span> : undefined}
           </div>
           <br />
+
           Address: {realWinner.formattedAddress}
           <br />
+          {phoneNumber()}
+          {priceLevel()}
           {hasDays()}
           {isOpen()}
           {isDog()}
