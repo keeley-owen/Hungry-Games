@@ -1,4 +1,3 @@
-import Header from './Header'
 import { Link } from 'react-router-dom'
 
 function Landing() {
@@ -7,7 +6,7 @@ function Landing() {
       <>
         <Link to="/nearby">
           <h1 className="landingPageButtons"> Get restaurants near you!</h1>
-        </Link>{' '}
+        </Link>
         <Link to="/custom">
           <h1 className="landingPageButtons"> Input your own restaurants!</h1>
         </Link>
