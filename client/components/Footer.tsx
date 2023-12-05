@@ -4,7 +4,7 @@ export default function Footer() {
       <p className="footer">
         {' '}
         Created By: Andrew Dunlop, Anthony Santiago, Blue Pilkinton-Ching,
-        Keeley Owen and LJ Lines Smith{' '}
+        Keeley Owen and L J Lines Smith{' '}
       </p>
     </>
   )
