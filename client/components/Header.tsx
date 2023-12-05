@@ -3,7 +3,7 @@ export default function Header() {
     <>
       <a href="/">
         <button className="header" type="reset">
-          <span>The Hungry Games</span>
+          <span>the hungry games </span>
         </button>
       </a>
     </>

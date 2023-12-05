@@ -80,16 +80,23 @@ export default function Details(winner) {
     }
   }
 
+  const link = () => {
+    if (realWinner.websiteUri != null) {
+      return (
+        <a className="winnerLinkActive" href={realWinner.websiteUri}>
+          {realWinner.displayName.text}
+        </a>
+      )
+    } else {
+      return <p className="winnerLinkInactive">{realWinner.displayName.text}</p>
+    }
+  }
+
   if (realWinner != null) {
     return (
       <>
         <div className="winnerFighter">
-          <h2>
-            <a className="winnerLink" href={realWinner.websiteUri}>
-              {realWinner.displayName.text}
-            </a>
-          </h2>{' '}
-          Rating:
+          <h2>{link()}</h2> Rating:
           <div className="ratingContainer">
             {starArr}
             {decimalPart >= 0.5 ? <span className="star">⯨</span> : undefined}
