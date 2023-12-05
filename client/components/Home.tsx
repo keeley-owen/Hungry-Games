@@ -5,7 +5,7 @@ import LocationList from './LocationList'
 import { setMaxListeners } from 'superagent'
 const initialFormData = {
   address: '',
-  radius: 3000,
+  radius: '',
 }
 
 export default function Home() {
@@ -60,15 +60,17 @@ export default function Home() {
             name="address"
             value={formData.address}
             onChange={handleInputChange}
+            placeholder="Your Address Here"
           />
           <input
             type="text"
             name="radius"
             value={formData.radius}
             onChange={handleInputChange}
+            placeholder="Search Radius (metres)"
           />
           <button className="sumbitButton" type="submit">
-            SUBMIT LOCATION
+            <span>SEARCH NEARBY</span>
           </button>
         </form>
 

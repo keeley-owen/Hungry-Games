@@ -28,7 +28,7 @@ export default function Details(winner) {
   }
   const isDog = () => {
     if (realWinner.allowsDogs == true) {
-      return 'Dogs Allowed'
+      return '𓃦'
     } else {
       return ''
     }
@@ -54,15 +54,40 @@ export default function Details(winner) {
     }
   }
 
+  const priceLevel = () => {
+    if (realWinner.price_level != null) {
+      return <p>Price Level: {realWinner.priceLevel}</p>
+    } else {
+      return ''
+    }
+  }
+
+  const phoneNumber = () => {
+    if (realWinner.nationalPhoneNumber != null) {
+      return <p> Phone Number: {realWinner.nationalPhoneNumber} </p>
+    } else {
+      return ''
+    }
+  }
+
+  function getStars(rating) {
+    const output = []
+    for (let i = rating; i >= 1; i--) output.push('☆')
+    for (let i = 5 - rating; i >= 1; i--) output.push(' ')
+    return output.join('')
+  }
+
   if (realWinner != null) {
     return (
       <>
         <div className="winnerFighter">
           {console.log(realWinner)}
           <a href={realWinner.websiteUri}>{realWinner.displayName.text}</a>{' '}
-          Rating: {realWinner.rating} <br />
+          Rating: <b id="star">{getStars(realWinner.rating)}</b> <br />
           Address: {realWinner.formattedAddress}
           <br />
+          {phoneNumber()}
+          {priceLevel()}
           {hasDays()}
           {isOpen()}
           {isDog()}

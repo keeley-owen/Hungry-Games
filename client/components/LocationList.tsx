@@ -1,15 +1,19 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { getNearByLocations } from '../apis/maps'
 import { useNavigate } from 'react-router-dom'
+import { Component, useEffect, useState } from 'react'
 
 interface Props {
   radius: number
   nearbyLocation: string
 }
 
-let hasBeenFetched = false
-
 export default function LocationList({ radius, nearbyLocation }: Props) {
+  const [hasBeenFetched, setFetched] = useState(false)
+  useEffect(() => {
+    setFetched(false)
+  }, [])
+
   const navigate = useNavigate()
   console.log('nearbyLocation:', nearbyLocation)
 
@@ -24,7 +28,7 @@ export default function LocationList({ radius, nearbyLocation }: Props) {
       const coords = window.encodeURIComponent(nearbyLocation)
       const result = await getNearByLocations({ radius: radius, key: coords })
       console.log(result)
-      hasBeenFetched = true
+      setFetched(true)
       return result
     },
 
@@ -55,11 +59,6 @@ export default function LocationList({ radius, nearbyLocation }: Props) {
   }
 
   function handleDelete(index) {
-    // const newLocations = [...locations]
-    // newLocations.splice(index, 1);
-    // // Update the state with the new array
-    // setLocations(newLocations);
-    // console.log("de",locations[index].name)
     deleteLocationMutation.mutate(locations.splice(index, 1))
   }
 
@@ -75,28 +74,32 @@ export default function LocationList({ radius, nearbyLocation }: Props) {
 
   return (
     <>
-      {locations.length >= 1 ? (
-        <div className="nearbyLocationsContainer">
-          {locations.map((data, index) => (
-            <div key={data.place_id} className="locationContainer">
-              {data.name}
-              <button onClick={() => handleDelete(index)}>delete</button>
-            </div>
-          ))}
-          {console.log(locations)}
-        </div>
-      ) : (
-        ''
-      )}
-
-      <div className="fightButtonContainer">
+      <div className="wrapper">
         {locations.length >= 1 ? (
-          <button className="fightButton" onClick={handleClick}>
-            Fight
-          </button>
+          <div className="nearbyLocationsContainer">
+            {locations.map((data, index) => (
+              <div key={data.place_id} className="locationContainer">
+                <button className="bin" onClick={() => handleDelete(index)}>
+                  ×
+                </button>{' '}
+                {data.name}
+              </div>
+            ))}
+            {console.log(locations)}
+          </div>
         ) : (
           ''
         )}
+
+        <div className="fightButtonContainer">
+          {locations.length >= 1 ? (
+            <button className="fightButton" onClick={handleClick}>
+              <span>Fight </span>
+            </button>
+          ) : (
+            ''
+          )}
+        </div>
       </div>
     </>
   )
