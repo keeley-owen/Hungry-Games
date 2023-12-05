@@ -12,13 +12,14 @@ interface Results {
 }
 
 export function ArenaFighter(props: ArenaFighter) {
+  const randomColor = '#' + Math.floor(Math.random() * 0xffffff).toString(16)
   return (
     <div
       style={{
         top: `${props.y}px`,
         left: `${props.x}px`,
         display: `${props.isDead ? 'none' : 'flex'}`,
-        backgroundColor: props.data.icon_background_color,
+        backgroundColor: randomColor,
       }}
       key={props.data.place_id}
       className="arenaFighter"
