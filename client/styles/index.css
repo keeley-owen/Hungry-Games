@@ -129,12 +129,13 @@ body {
   height: 200px;
   width: 200px;
 }
-.arenaFighter:hover {
+
+/* .arenaFighter:hover {
   transform: scale(1.2) rotate(20deg);
   box-shadow: 0 0 20px rgba(255, 165, 0, 0.8);
   background: linear-gradient(180deg, #ffd700, #ffd700);
   color: #333; /* Darker text color on hover */
-}
+} */
 
 @keyframes pulse {
   0% {
@@ -148,7 +149,7 @@ body {
   }
 }
 
-.arenaFighter:hover::before {
+/* .arenaFighter:hover::before {
   content: '';
   position: absolute;
   width: 100%;
@@ -160,7 +161,7 @@ body {
     transparent 80%
   );
   animation: pulse 1s infinite;
-}
+} */
 
 /* Form Container */
 #form-container {
@@ -384,10 +385,20 @@ body {
 
 .winnerLink {
   text-decoration: none;
-  color: white;
+  color: black;
+  background-color: #e5e5e5;
+
 }
 
 .winnerLink:visited {
   text-decoration: none;
-  color: white;
+  color: black;
+}
+
+.winnerLink:hover {
+  background-color: #898989;
+}
+
+.inverted {
+  filter: invert(100%);
 }

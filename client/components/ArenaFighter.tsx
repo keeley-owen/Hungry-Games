@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react'
+
 interface ArenaFighter {
   x: number
   y: number
@@ -8,11 +10,14 @@ interface ArenaFighter {
 interface Results {
   place_id: string
   name: string
-  icon_background_color: string
 }
 
 export function ArenaFighter(props: ArenaFighter) {
-  const randomColor = '#' + Math.floor(Math.random() * 0xffffff).toString(16)
+  const [randomColor, getRandomColor] = useState('red')
+  const random = '#' + Math.floor(Math.random() * 0xffffff).toString(16)
+  useEffect(() => {
+    getRandomColor(random)
+  }, [])
   return (
     <div
       style={{
@@ -24,7 +29,9 @@ export function ArenaFighter(props: ArenaFighter) {
       key={props.data.place_id}
       className="arenaFighter"
     >
-      {props.data.name}
+      <b style={{ color: randomColor }} className="inverted">
+        {props.data.name}
+      </b>
     </div>
   )
 }
