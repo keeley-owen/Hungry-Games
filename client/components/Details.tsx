@@ -55,7 +55,6 @@ export default function Details(winner) {
   }
   const starArr = []
 
-
   for (let x = 0; x < Math.floor(realWinner.rating); x++) {
     starArr.push('★')
   }
@@ -81,20 +80,19 @@ export default function Details(winner) {
     }
   }
 
-
   if (realWinner != null) {
     return (
       <>
         <div className="winnerFighter">
-          <a href={realWinner.websiteUri}>{realWinner.displayName.text}</a>{' '}
-
+          <a className="winnerLink" href={realWinner.websiteUri}>
+            {realWinner.displayName.text}
+          </a>{' '}
           Rating:
           <div className="ratingContainer">
             {starArr}
             {decimalPart >= 0.5 ? <span className="star">⯨</span> : undefined}
           </div>
           <br />
-
           Address: {realWinner.formattedAddress}
           <br />
           {phoneNumber()}

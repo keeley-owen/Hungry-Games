@@ -55,20 +55,22 @@ export default function Home() {
     <>
       <div id="form-container">
         <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="address"
-            value={formData.address}
-            onChange={handleInputChange}
-            placeholder="Your Address Here"
-          />
-          <input
-            type="text"
-            name="radius"
-            value={formData.radius}
-            onChange={handleInputChange}
-            placeholder="Search Radius (metres)"
-          />
+          <div>
+            <input
+              type="text"
+              name="address"
+              value={formData.address}
+              onChange={handleInputChange}
+              placeholder="Your Address Here"
+            />
+            <input
+              type="text"
+              name="radius"
+              value={formData.radius}
+              onChange={handleInputChange}
+              placeholder="Search Radius (metres)"
+            />
+          </div>
           <button className="sumbitButton" type="submit">
             <span>SEARCH NEARBY</span>
           </button>
