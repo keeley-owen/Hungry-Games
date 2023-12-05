@@ -1,6 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { getNearByLocations } from '../apis/maps'
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 interface Props {
@@ -58,7 +57,6 @@ export default function LocationList({ radius, nearbyLocation }: Props) {
     // setLocations(newLocations);
     // console.log("de",locations[index].name)
     deleteLocationMutation.mutate(locations.splice(index, 1))
-  
   }
   const nearbyLocations = locations
 
@@ -67,7 +65,6 @@ export default function LocationList({ radius, nearbyLocation }: Props) {
 
   function handleClick(e) {
     e.preventDefault()
-
     navigate('/arena', {
       state: { results: locations, winner: randomValue },
     })
@@ -75,18 +72,17 @@ export default function LocationList({ radius, nearbyLocation }: Props) {
 
   return (
     <>
-
-           {locations.length >= 1 ? (
-      <div className="nearbyLocationsContainer">
-        {locations.map((data, index) => (
-          <div key={data.place_id} className="locationContainer">
-            {data.name}
-            <button onClick={() => handleDelete(index)}>delete</button>
-          </div>
-        ))}
-        {console.log(locations)}
-      </div>
-          ) : (
+      {locations.length >= 1 ? (
+        <div className="nearbyLocationsContainer">
+          {locations.map((data, index) => (
+            <div key={data.place_id} className="locationContainer">
+              {data.name}
+              <button onClick={() => handleDelete(index)}>delete</button>
+            </div>
+          ))}
+          {console.log(locations)}
+        </div>
+      ) : (
         ''
       )}
 
