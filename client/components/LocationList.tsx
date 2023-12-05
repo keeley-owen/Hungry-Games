@@ -66,7 +66,6 @@ export default function LocationList({ radius, nearbyLocation }: Props) {
 
   function handleClick(e) {
     e.preventDefault()
-
     navigate('/arena', {
       state: { results: locations, winner: randomValue },
     })
@@ -74,7 +73,9 @@ export default function LocationList({ radius, nearbyLocation }: Props) {
 
   return (
     <>
+
       <div className="wrapper">
+
         {locations.length >= 1 ? (
           <div className="nearbyLocationsContainer">
             {locations.map((data, index) => (

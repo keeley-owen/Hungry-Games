@@ -1,14 +1,17 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { ArenaFighter } from './ArenaFighter'
 import Header from './Header'
 import Details from './Details'
+import ConfettiExplosion from 'react-confetti-explosion'
 
 interface Coordinates {
   x: number
   y: number
   yOffset: number
   isDead: boolean
+  xVel: number
+  yVel: number
 }
 
 interface Results {
@@ -24,6 +27,10 @@ function getRandomInt(min: number, max: number) {
   min = Math.ceil(min)
   max = Math.floor(max)
   return Math.floor(Math.random() * (max - min + 1)) + min
+}
+
+function getRandomFloat(min: number, max: number) {
+  return Math.random() * (max - min + 1) + min
 }
 
 class RandomNumberGenerator {
@@ -52,15 +59,22 @@ class RandomNumberGenerator {
 export default function Arena() {
   const location = useLocation()
   const [coordinates, setCoordinates] = useState<Coordinates[]>([])
+  const [deadCount, setDeadCount] = useState(0)
+  const [isExploding, setIsExploding] = useState(false)
+
   useEffect(() => {
     console.log('UseEffect')
 
-    const coordArray = []
+    const coordArray: Coordinates[] = []
 
-    location.state.results.forEach((element, index: number) => {
+    location.state.results.forEach((element: Coordinates, index: number) => {
       coordArray.push({
         x: Math.cos(index * maxValue) * 400 + 400,
         y: Math.sin(index * maxValue) * 400 + 400,
+        yOffset: 0,
+        isDead: false,
+        xVel: 0,
+        yVel: 0,
       })
     })
 
@@ -71,6 +85,10 @@ export default function Arena() {
         prev.map((element, index) => {
           if (!element.isDead) {
             // Calculate the differences in x and y
+
+            element.xVel *= 0.95
+            element.yVel *= 0.95
+
             const xDiff = element.x - 400
             const yDiff = element.y - 400
 
@@ -78,6 +96,17 @@ export default function Arena() {
             const distance = Math.sqrt(xDiff * xDiff + yDiff * yDiff)
 
             const jumpHeight = Math.abs(Math.sin(distance * 0.1 + index)) * -10
+
+            if (distance <= 30) {
+              element.xVel =
+                Math.random() <= 0.5
+                  ? getRandomFloat(5, 15)
+                  : -getRandomFloat(5, 15)
+              element.yVel =
+                Math.random() <= 0.5
+                  ? getRandomFloat(5, 15)
+                  : -getRandomFloat(5, 15)
+            }
 
             const rng = new RandomNumberGenerator(index + location.state.winner)
             const randomVal = rng.generateRandomNumber(
@@ -95,20 +124,26 @@ export default function Arena() {
             const normalizedYDif = (yDiff / distance) * speedEffect
 
             // Update x and y coordinates
-            const x = element.x - normalizedXDif
-            const y = element.y - normalizedYDif
+            const x = element.x + element.xVel - normalizedXDif
+            const y = element.y + element.yVel - normalizedYDif
+
+            const shouldDie =
+              Math.random() <= 0.005 && index != location.state.winner
+
+            if (shouldDie) {
+              setDeadCount((prev) => prev + 1)
+            }
 
             return {
               x,
               y,
               yOffset: jumpHeight,
-              isDead:
-                Math.random() <= 0.01 && index != location.state.winner
-                  ? true
-                  : false,
+              isDead: shouldDie ? true : false,
+              xVel: element.xVel,
+              yVel: element.yVel,
             }
           } else {
-            return { x: 0, y: 0, yOffset: 0, isDead: true }
+            return { x: 0, y: 0, yOffset: 0, isDead: true, xVel: 0, yVel: 0 }
           }
         }),
       )
@@ -117,27 +152,25 @@ export default function Arena() {
     return () => {
       clearInterval(token)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const [trueState, setTrueState] = useState(false)
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
+  if (deadCount == location.state.results.length - 1 && !isExploding) {
+    setIsExploding(true)
+    setTimeout(() => {
       setTrueState(true)
-    }, 7000)
-
-    return () => clearTimeout(timeout)
-  }, [])
-  setTrueState
+    }, 2000)
+  }
 
   const conditionalWinner = () => {
-    if (trueState == false) {
+    if (trueState === false) {
       return (
         <div className="arenaContainer">
           <div className="circle"></div>
           {coordinates[0]
             ? results.map((data: Results, index: number) => {
-                // console.log(results.isDead == true)
                 return (
                   <ArenaFighter
                     isDead={coordinates[index].isDead}
@@ -153,10 +186,6 @@ export default function Arena() {
       )
     } else {
       const arrayValue = location.state.winner
-      console.log('winner ready')
-      console.log('arrayValue:', arrayValue)
-      console.log('location.state: ', location.state)
-      console.log('winner object: ', location.state.results[arrayValue])
       return (
         <>
           <div className="winnerContainer">
@@ -175,7 +204,9 @@ export default function Arena() {
   return (
     <>
       <Header />
-
+      {isExploding && (
+        <ConfettiExplosion particleCount={100} force={1} width={2000} />
+      )}
       {conditionalWinner()}
     </>
   )

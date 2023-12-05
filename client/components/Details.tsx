@@ -81,7 +81,6 @@ export default function Details(winner) {
     return (
       <>
         <div className="winnerFighter">
-          {console.log(realWinner)}
           <a href={realWinner.websiteUri}>{realWinner.displayName.text}</a>{' '}
           Rating: <b id="star">{getStars(realWinner.rating)}</b> <br />
           Address: {realWinner.formattedAddress}
