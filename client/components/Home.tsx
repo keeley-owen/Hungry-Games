@@ -53,6 +53,14 @@ export default function Home() {
 
   return (
     <>
+      <div className="description">
+        <p>
+          Please enter your location and a search radius (in metres). 20 popular
+          eating destinations near you will load and pressing the{' '}
+          <span>Fight</span> button will cause them to duke it out to decide
+          your destination.
+        </p>
+      </div>
       <div id="form-container">
         <form onSubmit={handleSubmit}>
           <div>
