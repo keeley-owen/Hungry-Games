@@ -385,18 +385,27 @@ body {
 
 .winnerLink {
   text-decoration: none;
-  color: black;
-  background-color: #e5e5e5;
+  color: white;
+  padding:5px;
 
 }
+.winnerFighter:hover .winnerLink{
+  transform: scale(1.2);
+ 
 
+  color: #333; /* Darker text color on hover */
+}
 .winnerLink:visited {
   text-decoration: none;
   color: black;
 }
 
 .winnerLink:hover {
-  background-color: #898989;
+  background-color: rgb(187, 187, 6);
+  width:200px;
+  transition: .5s;
+  
+  border-radius:10px;
 }
 
 .inverted {
