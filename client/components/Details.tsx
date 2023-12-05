@@ -56,7 +56,7 @@ export default function Details(winner) {
   const starArr = []
 
   for (let x = 0; x < Math.floor(realWinner.rating); x++) {
-    starArr.push('⭐')
+    starArr.push('★')
   }
   const decimalPart = realWinner.rating % 1
   console.log('decimal', decimalPart)
