@@ -1,11 +1,11 @@
-import { Link } from 'react-router-dom'
-
 export default function Header() {
   return (
     <>
-      <Link to="/">
-        <h1 className="header"> The Hungry Games</h1>
-      </Link>
+      <a href="/">
+        <button className="header" type="reset">
+          <span>the hungry games </span>
+        </button>
+      </a>
     </>
   )
 }

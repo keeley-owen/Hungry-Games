@@ -170,7 +170,11 @@ export default function Arena() {
     if (trueState === false) {
       return (
         <div className="arenaContainer">
-          <div className="circle"></div>
+          <img
+            src="./imgs/swords.png"
+            className="fightImage"
+            alt="a sword and spoon crossed"
+          />
           {coordinates[0]
             ? results.map((data: Results, index: number) => {
                 return (

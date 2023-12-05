@@ -37,7 +37,7 @@ export default function Details(winner) {
   const hasDays = () => {
     if (realWinner.regularOpeningHours != null) {
       return (
-        <>
+        <div className="openingHours">
           Opening hours: <br />
           {realWinner.regularOpeningHours.weekdayDescriptions[0]} <br />
           {realWinner.regularOpeningHours.weekdayDescriptions[1]} <br />
@@ -47,7 +47,7 @@ export default function Details(winner) {
           {realWinner.regularOpeningHours.weekdayDescriptions[5]} <br />
           {realWinner.regularOpeningHours.weekdayDescriptions[6]}
           <br />{' '}
-        </>
+        </div>
       )
     } else {
       return ' '
@@ -56,7 +56,7 @@ export default function Details(winner) {
   const starArr = []
 
   for (let x = 0; x < Math.floor(realWinner.rating); x++) {
-    starArr.push('★')
+    starArr.push('☆')
   }
   const decimalPart = realWinner.rating % 1
   console.log('decimal', decimalPart)
@@ -80,19 +80,26 @@ export default function Details(winner) {
     }
   }
 
+  const link = () => {
+    if (realWinner.websiteUri != null) {
+      return (
+        <a className="winnerLinkActive" href={realWinner.websiteUri}>
+          {realWinner.displayName.text}
+        </a>
+      )
+    } else {
+      return <p className="winnerLinkInactive">{realWinner.displayName.text}</p>
+    }
+  }
+
   if (realWinner != null) {
     return (
       <>
         <div className="winnerFighter">
-          <h2>
-            <a className="winnerLink" href={realWinner.websiteUri}>
-              {realWinner.displayName.text}
-            </a>
-          </h2>{' '}
-          Rating:
+          <h2>{link()}</h2> Rating:
           <div className="ratingContainer">
             {starArr}
-            {decimalPart >= 0.5 ? <span className="star">⯨</span> : undefined}
+            {decimalPart >= 0.5 ? <span className="star">⭒</span> : undefined}
           </div>
           <br />
           Address: {realWinner.formattedAddress}

@@ -5,6 +5,12 @@ body {
   color: #fff;
 }
 
+@font-face {
+  font-family: futura;
+  src: './futura/futuralight.ttf';
+}
+
+/* 
 .header {
   background-color: rgb(82, 82, 194);
   color: #fff;
@@ -34,7 +40,7 @@ body {
 }
 .header:active {
   text-decoration: none;
-}
+} */
 .container {
   margin: 20px;
 }
@@ -57,6 +63,7 @@ body {
 .locationContainer {
   position: relative;
   text-align: center;
+  background-color: #404040;
   height: 100px;
   width: 200px;
   display: flex;
@@ -75,6 +82,7 @@ body {
 .locationContainer:hover {
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
   transform: scale(1.05);
+  background-color: #4a4a4a;
 }
 
 /* Add Gradient and Box Shadow to Arena Container */
@@ -116,18 +124,20 @@ body {
   background: 0.3s ease-in-out;
   position: absolute;
 }
-.circle {
-  position: absolute;
+.fightImage {
+  position: relative;
+  justify-content: center;
+  display: flex;
+  width: 100%;
+  margin-left: 10%;
+  display: block;
+  align-self: center;
   top: 0;
-  left: 0;
   bottom: 0;
+  left: 0;
   right: 0;
-  margin: auto;
-  border-radius: 50%;
-  border: 1px solid red;
 
-  height: 200px;
-  width: 200px;
+  filter: invert;
 }
 
 .weapon-right {
@@ -170,20 +180,6 @@ body {
   }
 }
 
-/* .arenaFighter:hover::before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(255, 165, 0, 0.8) 0%,
-    transparent 80%
-  );
-  animation: pulse 1s infinite;
-} */
-
 /* Form Container */
 #form-container {
   display: flex;
@@ -216,6 +212,8 @@ body {
   text-align: center;
   transition: all 0.5s;
   cursor: pointer;
+  font-family: futura, sans-serif;
+  font-weight: bold;
 }
 
 .sumbitButton span {
@@ -285,6 +283,8 @@ body {
   transition: all 0.5s;
   cursor: pointer;
   margin: 5px;
+  font-family: futura, sans-serif;
+  font-weight: bold;
 }
 
 .fightButton span {
@@ -295,7 +295,7 @@ body {
 }
 
 .fightButton span:after {
-  content: '⚔';
+  content: '➳';
   position: absolute;
   opacity: 0;
   top: 0;
@@ -388,14 +388,6 @@ body {
   cursor: pointer;
 }
 
-.ratingContainer {
-  display: flex;
-}
-.star {
-  margin-top: -0.5px;
-  font-size: 14px;
-}
-
 .bin:hover {
   background-color: #fd0000;
   border-radius: 100%;
@@ -404,22 +396,125 @@ body {
   cursor: pointer;
 }
 
-.winnerLink {
-  text-decoration: none;
-  color: black;
-  background-color: #e5e5e5;
-
+.ratingContainer {
+  display: flex;
 }
 
-.winnerLink:visited {
+.star {
+  margin-top: -0.5px;
+  font-size: 14px;
+}
+
+.winnerLinkActive {
+  font-family: futura, sans-serif;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  padding: 5px;
+}
+.winnerFighter:hover .winnerLinkActive {
+  transform: scale(1.2);
+
+  color: #333; /* Darker text color on hover */
+}
+.winnerLinkActive:visited {
   text-decoration: none;
   color: black;
 }
 
-.winnerLink:hover {
-  background-color: #898989;
+.winnerLinkActive:hover {
+  background-color: rgb(206, 206, 0);
+  width: 200px;
+  transition: 0.5s;
+
+  border-radius: 10px;
+}
+
+.winnerLinkInactive {
+  font-family: futura, sans-serif;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  padding: 5px;
+}
+.winnerFighter:hover .winnerLinkInactive {
+  transform: scale(1.2);
+
+  color: #333; /* Darker text color on hover */
 }
 
 .inverted {
   filter: invert(100%);
+}
+
+.header {
+  background-color: rgb(0, 24, 201);
+  font-family: futura, sans-serif;
+  font-weight: bold;
+  font-size: 2.5em;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+
+  border-radius: 5px;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease-in-out,
+    color 0.3s ease-in-out;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  display: inline-block;
+  text-align: center;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.header span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.header span:after {
+  content: '↺';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.header:hover span {
+  padding-right: 25px;
+}
+
+.header:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.header:hover {
+  background-color: rgb(1, 58, 214);
+}
+
+.description {
+  padding-left: 15px;
+  font-size: 1.2em;
+  font-family: futura, sans-serif;
+  color: white;
+}
+.description span {
+  color: red;
+}
+
+.footer {
+  position: fixed;
+
+  bottom: -17px;
+  font-family: futura, sans-serif;
+  font-style: oblique;
+  width: 100%;
+  background: linear-gradient(180deg, #333, #1e1e1e);
+  padding: 10px;
 }
