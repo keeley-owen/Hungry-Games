@@ -58,7 +58,7 @@ export default function Home() {
           Please enter your location and a search radius (in metres). Up to 20
           popular eating destinations near you will load and pressing the{' '}
           <span>Fight</span> button will cause them to duke it out to decide
-          your destination. You can also delete option displayed below.
+          your destination. You can also delete options displayed below.
         </p>
       </div>
       <div id="form-container">
