@@ -23,7 +23,7 @@ interface Results {
 const moveSpeed = 1
 const indexMoveSpeedEffect = 1.5
 
-function getRandomInt(min: number, max: number) {
+export function getRandomInt(min: number, max: number) {
   min = Math.ceil(min)
   max = Math.floor(max)
   return Math.floor(Math.random() * (max - min + 1)) + min
@@ -83,7 +83,11 @@ export default function Arena() {
     const token = setInterval(() => {
       setCoordinates((prev) =>
         prev.map((element, index) => {
-          if (!element.isDead) {
+          if (element.isDead || isExploding) {
+            return {
+              ...element,
+            }
+          } else {
             // Calculate the differences in x and y
 
             element.xVel *= 0.95
@@ -128,7 +132,7 @@ export default function Arena() {
             const y = element.y + element.yVel - normalizedYDif
 
             const shouldDie =
-              Math.random() <= 0.005 && index != location.state.winner
+              Math.random() <= 0.002 && index != location.state.winner
 
             if (shouldDie) {
               setDeadCount((prev) => prev + 1)
@@ -142,8 +146,6 @@ export default function Arena() {
               xVel: element.xVel,
               yVel: element.yVel,
             }
-          } else {
-            return { x: 0, y: 0, yOffset: 0, isDead: true, xVel: 0, yVel: 0 }
           }
         }),
       )
