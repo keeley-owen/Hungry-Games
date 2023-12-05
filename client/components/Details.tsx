@@ -53,14 +53,28 @@ export default function Details(winner) {
       return ' '
     }
   }
+  const starArr = []
 
+  for (let x = 0; x < Math.floor(realWinner.rating); x++) {
+    starArr.push('⭐')
+  }
+  const decimalPart = realWinner.rating % 1
+  console.log('decimal', decimalPart)
+  // if (decimalPart >= 0.5) {
+  //  <img src = "https://image.emojisky.com/127/511127-small.png">
+  // }
   if (realWinner != null) {
     return (
       <>
         <div className="winnerFighter">
           {console.log(realWinner)}
           <a href={realWinner.websiteUri}>{realWinner.displayName.text}</a>{' '}
-          Rating: {realWinner.rating} <br />
+          Rating:
+          <div className="ratingContainer">
+            {starArr}
+            {decimalPart >= 0.5 ? <span className="star">⯨</span> : undefined}
+          </div>
+          <br />
           Address: {realWinner.formattedAddress}
           <br />
           {hasDays()}

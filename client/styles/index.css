@@ -271,3 +271,12 @@ body {
 
 
 
+.ratingContainer{
+  display:flex;
+  
+}
+.star{
+  margin-top:-4.5px;
+ font-size: 20px;
+ color:yellow;
+}
