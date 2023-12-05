@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { getCurrentLocationApi } from '../apis/current'
 import { useQuery } from '@tanstack/react-query'
 import LocationList from './LocationList'
+import { setMaxListeners } from 'superagent'
 const initialFormData = {
   address: '',
   radius: 3000,
