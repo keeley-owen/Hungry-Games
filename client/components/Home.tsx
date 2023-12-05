@@ -55,10 +55,10 @@ export default function Home() {
     <>
       <div className="description">
         <p>
-          Please enter your location and a search radius (in metres). 20 popular
-          eating destinations near you will load and pressing the{' '}
+          Please enter your location and a search radius (in metres). Up to 20
+          popular eating destinations near you will load and pressing the{' '}
           <span>Fight</span> button will cause them to duke it out to decide
-          your destination.
+          your destination. You can also delete options displayed below.
         </p>
       </div>
       <div id="form-container">
