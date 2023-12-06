@@ -21,14 +21,14 @@ export default function Details(winner) {
 
   const isOpen = () => {
     if (realWinner.delivery == true) {
-      return 'Delivery Available'
+      return 'Delivery Available ✓'
     } else {
       return ''
     }
   }
   const isDog = () => {
     if (realWinner.allowsDogs == true) {
-      return '𓃦'
+      return '𓃦 ✓'
     } else {
       return ''
     }
@@ -59,10 +59,6 @@ export default function Details(winner) {
     starArr.push('☆')
   }
   const decimalPart = realWinner.rating % 1
-  console.log('decimal', decimalPart)
-  // if (decimalPart >= 0.5) {
-  //  <img src = "https://image.emojisky.com/127/511127-small.png">
-  // }
 
   const priceLevel = () => {
     if (realWinner.price_level != null) {
@@ -74,7 +70,7 @@ export default function Details(winner) {
 
   const phoneNumber = () => {
     if (realWinner.nationalPhoneNumber != null) {
-      return <p> Phone Number: {realWinner.nationalPhoneNumber} </p>
+      return <p> Ph: {realWinner.nationalPhoneNumber} </p>
     } else {
       return ''
     }
@@ -96,18 +92,23 @@ export default function Details(winner) {
     return (
       <>
         <div className="winnerFighter">
-          <h2>{link()}</h2> Rating:
+          <h2>{link()}</h2>
+          <br />
+          {/* Rating: */}
           <div className="ratingContainer">
             {starArr}
             {decimalPart >= 0.5 ? <span className="star">⭒</span> : undefined}
           </div>
           <br />
-          Address: {realWinner.formattedAddress}
+          {realWinner.formattedAddress}
           <br />
           {phoneNumber()}
+          {isOpen()}
+          <br />
+          <br />
           {priceLevel()}
           {hasDays()}
-          {isOpen()}
+          <br />
           {isDog()}
         </div>
       </>

@@ -313,7 +313,9 @@ body {
   justify-content: center;
   align-items: center;
   border-radius: 8px;
-  background: linear-gradient(180deg, #333, #1e1e1e);
+  /* background: linear-gradient(180deg, #ffd700, #ffd900e3); */
+  background: linear-gradient(180deg, rgb(60, 1, 127), #5d0e8b);
+  color: white;
   transition:
     transform 0.3s ease-in-out,
     box-shadow 0.3s ease-in-out,
@@ -322,16 +324,18 @@ body {
 
 /* Adjust the position of the winnerFighter */
 .winnerFighter:hover {
-  transform: scale(1.2);
-  box-shadow: 0 0 20px rgba(255, 165, 0, 0.8);
-  background: linear-gradient(180deg, #ffd700, #ffd700);
-  color: #333; /* Darker text color on hover */
+  /* transform: scale(1.2); */
+  box-shadow: 0 0 20px rgba(174, 0, 255, 0.8);
+  /* background: linear-gradient(180deg, #ffd700, #ffd700); */
+  background-color: #5d0e8b;
+  /* color: #333; Darker text color on hover */
 }
 
 #star {
   color: black;
   -webkit-text-stroke-width: 0.5px;
   -webkit-text-stroke-color: black;
+  font-size: 25px;
 }
 
 .bin {
@@ -358,32 +362,39 @@ body {
 
 .ratingContainer {
   display: flex;
+  font-size: 27px;
 }
 
 .star {
   margin-top: -0.5px;
-  font-size: 14px;
+  font-size: 25px;
 }
 
 .winnerLinkActive {
   font-family: futura, sans-serif;
+  background-color: rgba(0, 0, 0, 0.185);
+  /* background-color: rgba(0, 0, 0, 0.8); */
   text-decoration: none;
   color: white;
   font-weight: bold;
-  padding: 5px;
+  padding: 14px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 10px;
 }
 .winnerFighter:hover .winnerLinkActive {
   transform: scale(1.2);
 
-  color: #333; /* Darker text color on hover */
+  color: white; /* Darker text color on hover */
 }
 .winnerLinkActive:visited {
   text-decoration: none;
-  color: black;
+  color: white;
 }
 
 .winnerLinkActive:hover {
-  background-color: rgb(206, 206, 0);
+  background-color: rgba(174, 0, 255, 0.8);
+  /* background-color: rgba(40, 40, 40, 0.4); */
   width: 200px;
   transition: 0.5s;
 
@@ -400,7 +411,7 @@ body {
 .winnerFighter:hover .winnerLinkInactive {
   transform: scale(1.2);
 
-  color: #333; /* Darker text color on hover */
+  color: white; /* Darker text color on hover */
 }
 
 .inverted {
@@ -437,7 +448,7 @@ body {
 }
 
 .header span:after {
-  content: '↺';
+  content: ' ↺';
   position: absolute;
   opacity: 0;
   top: 0;

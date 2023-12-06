@@ -26,10 +26,6 @@ export function ArenaFighter(props: ArenaFighter) {
     setRandomHue(getRandomInt(20, 355))
   }, [])
 
-  if (props.isDead) {
-    console.log('sup')
-  }
-
   return props.isDead ? (
     <div
       style={{
